@@ -21,7 +21,7 @@ between the *Arduino* RX/TX pins and the Receivers S-Port and combine the RX/TX 
 <br>For this purpose, I recommend the RS-232 Inverter by Bernd Feiler described here:
 [RS-232 Inverter by Bernd Feiler](https://discuss.ardupilot.org/uploads/short-url/sCX6JsKOJ3IDqZxHaSJgylAd1YR.pdf)
 ### Differences between Hardware- and Software-Serial
-| Hardware Serial               | Softwre Serial                        |
+| Hardware Serial               | Software Serial                        |
 | --------------------          | ----------------                      |
 | Duplex communication          | SImplex communication                 |
 | RX and TX on 2 different pins | RX and TX can use the same pin number |
