@@ -1,4 +1,4 @@
-#include <SPortWriter.h>
+#include "SPortWriter.h"
 
 SPortWriter::SPortWriter(Stream *pStream) :
     pStream(pStream)

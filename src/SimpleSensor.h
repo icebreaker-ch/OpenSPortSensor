@@ -1,7 +1,7 @@
 #ifndef SIMPLE_SENSOR_H
 #define SIMPLE_SENSOR_H
 
-#include <Sensor.h>
+#include "Sensor.h"
 
 class SimpleSensor : public Sensor {
     public:

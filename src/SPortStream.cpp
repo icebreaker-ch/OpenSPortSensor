@@ -1,4 +1,4 @@
-#include <SPortStream.h>
+#include "SPortStream.h"
 
 SPortStream::SPortStream(Stream *pStream) :
     isSoftwareStream(false),

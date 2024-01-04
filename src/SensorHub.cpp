@@ -1,6 +1,6 @@
-#include <SensorPool.h>
+#include "SensorHub.h"
 
-SensorPool::SensorPool(int physicalId, int maxSensorCount) :
+SensorHub::SensorHub(PhysicalId physicalId, int maxSensorCount) :
     physicalId(physicalId),
     sensorCount(0),
     currentSensorIndex(0)
@@ -8,15 +8,15 @@ SensorPool::SensorPool(int physicalId, int maxSensorCount) :
     pSensors = new Sensor*[maxSensorCount];
 }
 
-void SensorPool::addSensor(Sensor *pSensor) {
+void SensorHub::addSensor(Sensor *pSensor) {
     pSensors[sensorCount++] = pSensor;
 }
 
-int SensorPool::getPhysicalId() {
+int SensorHub::getPhysicalId() {
     return physicalId;
 }
 
-Sensor *SensorPool::getNextSensor() {
+Sensor *SensorHub::getNextSensor() {
     if (sensorCount > 0) {
         currentSensorIndex = (currentSensorIndex + 1) % sensorCount;
         return pSensors[currentSensorIndex];

@@ -1,12 +1,11 @@
 #include <Arduino.h>
-#include <SoftwareSerial.h>
-#include <config.h>
-#include <SensorPool.h>
-#include <Sensor.h>
-#include <SimpleSensor.h>
-#include <TxData.h>
-#include <SPortWriter.h>
-#include <SPortStream.h>
+#include "config.h"
+#include "SensorHub.h"
+#include "Sensor.h"
+#include "SimpleSensor.h"
+#include "TxData.h"
+#include "SPortWriter.h"
+#include "SPortStream.h"
 
 #define START_BYTE 0x7E
 
@@ -18,7 +17,7 @@
 
 SPortWriter *pSPortWriter;
 
-SensorPool pool = SensorPool(13);
+SensorHub pool = SensorHub(PHYSICAL_ID11);
 
 void setup() {
   Serial.begin(9600);

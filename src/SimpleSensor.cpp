@@ -1,5 +1,5 @@
 #include <Arduino.h>
-#include <SimpleSensor.h>
+#include "SimpleSensor.h"
 
 SimpleSensor::SimpleSensor(int sensorId) :
     Sensor(sensorId)
