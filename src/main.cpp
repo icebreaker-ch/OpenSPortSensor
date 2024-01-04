@@ -11,7 +11,7 @@
 #define START_BYTE 0x7E
 
 #ifdef USE_HARDWARE_SERIAL
-  SPortStream *pStream = new SPortStream(&Serial1);
+  SPortStream *pStream = new SPortStream(&HARDWARE_SERIAL_STREAM);
 #else
   SPortStream *pStream = new SPortStream(SOFTWARE_SERIAL_PIN);
 #endif

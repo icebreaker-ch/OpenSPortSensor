@@ -15,7 +15,8 @@
     */
     class SPortStream : public Stream {
         public:
-            SPortStream(HardwareSerial *pHardwareStream);
+            SPortStream(Stream *pSerial);            
+            //SPortStream(HardwareSerial *pHardwareStream);
             SPortStream(int pin);
             void begin(unsigned long speed, byte config);
             void listen();
@@ -31,4 +32,3 @@
             Stream *pStream;
     };
 #endif
-

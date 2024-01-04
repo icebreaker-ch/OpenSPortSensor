@@ -1,10 +1,18 @@
 #include <SPortStream.h>
 
-SPortStream::SPortStream(HardwareSerial *pHardwareStream) :
+SPortStream::SPortStream(Stream *pStream) :
     isSoftwareStream(false),
     pin(0),
-    pStream(pHardwareStream) {
+    pStream(pStream)
+{
 }
+
+// SPortStream::SPortStream(HardwareSerial *pHardwareStream) :
+//     isSoftwareStream(false),
+//     pin(0),
+//     pStream(pHardwareStream)
+// {
+// }
 
 SPortStream::SPortStream(int pin) :
     isSoftwareStream(true),

@@ -1,6 +1,6 @@
 #include <TxData.h>
 
-TxData::TxData(short sensorId, long value, unsigned char type = DATA_FRAME) :
+TxData::TxData(short sensorId, long value, unsigned char type) :
     sensorId(sensorId),
     value(value),
     type(type)
