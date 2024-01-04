@@ -3,6 +3,7 @@
 #include "SensorHub.h"
 #include "Sensor.h"
 #include "SimpleSensor.h"
+#include "VoltageSensor.h"
 #include "TxData.h"
 #include "SPortWriter.h"
 #include "SPortStream.h"
@@ -10,23 +11,26 @@
 #define START_BYTE 0x7E
 
 #ifdef USE_HARDWARE_SERIAL
-  SPortStream *pStream = new SPortStream(&HARDWARE_SERIAL_STREAM);
+  static SPortStream *pStream = new SPortStream(&HARDWARE_SERIAL_STREAM);
 #else
-  SPortStream *pStream = new SPortStream(SOFTWARE_SERIAL_PIN);
+  static SPortStream *pStream = new SPortStream(SOFTWARE_SERIAL_PIN);
 #endif
 
-SPortWriter *pSPortWriter;
-
-SensorHub pool = SensorHub(PHYSICAL_ID11);
+static SPortWriter *pSPortWriter;
+static SensorHub hub = SensorHub(PHYSICAL_ID11);
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(9600); // Debugging output
+  analogReference(ANALOG_REFERENCE);
+
 
   SimpleSensor *pSensor1 = new SimpleSensor(0x5200);
   SimpleSensor *pSensor2 = new SimpleSensor(0x5210);
+  VoltageSensor *pSensor3 = new VoltageSensor(0x5220, A0, 10000, 2200);
 
-  pool.addSensor(pSensor1);
-  pool.addSensor(pSensor2);
+  hub.addSensor(pSensor1);
+  hub.addSensor(pSensor2);
+  hub.addSensor(pSensor3);
 
   pStream->begin(S_PORT_BAUD, SERIAL_8N1);
   pStream->listen();
@@ -53,20 +57,20 @@ void loop() {
       break;
 
     case stateWaitPhysicalId:
-      if ((pStream->available() && (pStream->readBytes(&byte, 1) == 1) && (byte == pool.getPhysicalId()))) {
+      if ((pStream->available() && (pStream->readBytes(&byte, 1) == 1) && (byte == hub.getPhysicalId()))) {
         state = stateWriteData;
       }
       break;
 
     case stateWriteData:
       pStream->stopListening();
-      Sensor *pSensor = pool.getNextSensor();
+      Sensor *pSensor = hub.getNextSensor();
       TxData data(pSensor->getSensorId(), pSensor->getValue());
 
-      unsigned char bytes[8];
+      unsigned char bytes[TxData::LEN];
       data.getData(bytes);
 
-      for (int i = 0; i <= 7; ++i) {
+      for (int i = 0; i < TxData::LEN; ++i) {
         pSPortWriter->write(bytes[i]);
       }
 

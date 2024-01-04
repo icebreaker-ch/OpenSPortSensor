@@ -6,8 +6,8 @@
 */
 class Sensor {
     public:
-        Sensor(int sensorId) {
-            this->sensorId = sensorId;
+        Sensor(int sensorId) :
+            sensorId(sensorId) {
         }
 
         int getSensorId() {

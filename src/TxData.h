@@ -7,6 +7,7 @@ class TxData {
     public:
         TxData(short sensorId, long value, unsigned char type = DATA_FRAME);
         void getData(unsigned char buffer[]);
+        static const int LEN = 8;
 
     private:
         unsigned char getChecksum(unsigned char data[]);
