@@ -6,20 +6,7 @@
  * on your board to handle the communication between the Arduino and the Receiver.
  * You need a RS232 Inverter Board between the Arduino and the Receiver.
 */
-//#define USE_HARDWARE_SERIAL
-
-#ifdef USE_HARDWARE_SERIAL
-/**
- * Defines the stream object to be used for HardwareSerial communication
- * (communication via RX/TX pins).
- * Different boards use different objects to provide HardwareSerial communication.
- * Arduino Sparkfun proMicro: Serial1
- * Arduino Mini/Pro Mini: Serial
- * Arduino Nano: Serial
-*/
-#define HARDWARE_SERIAL_STREAM Serial
-//#define HARDWARE_SERIAL_STREAM Serial1
-#endif
+#define USE_HARDWARE_SERIAL
 
 #ifndef USE_HARDWARE_SERIAL
 /**
