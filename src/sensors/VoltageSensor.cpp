@@ -4,8 +4,8 @@
 VoltageSensor::VoltageSensor(int sensorId, uint8_t analogPin, long resistorToVoltage, long resistorToGround) :
     Sensor(sensorId),
     analogPin(analogPin),
-    resistorToGround(resistorToGround),
-    resistorToVoltage(resistorToVoltage) {
+    resistorToVoltage(resistorToVoltage),
+    resistorToGround(resistorToGround) {
 }
 
 long VoltageSensor::getValue() {
