@@ -4,6 +4,7 @@
 #include "Sensor.h"
 #include "SimpleSensor.h"
 #include "VoltageSensor.h"
+#include "BME280AltSensor.h"
 #include "TxData.h"
 #include "SPortWriter.h"
 #include "SPortStream.h"
@@ -20,17 +21,17 @@ static SPortWriter *pSPortWriter;
 static SensorHub hub = SensorHub(PHYSICAL_ID11);
 
 void setup() {
-  Serial.begin(9600); // Debugging output
+  Serial.begin(9600); // For debugging output
   analogReference(ANALOG_REFERENCE);
 
 
   SimpleSensor *pSensor1 = new SimpleSensor(0x5200);
-  SimpleSensor *pSensor2 = new SimpleSensor(0x5210);
-  VoltageSensor *pSensor3 = new VoltageSensor(0x5220, A0, 10000, 2200);
+  VoltageSensor *pVoltageSensor = new VoltageSensor(0x5210, A0, 10000, 2200);
+  BME280AltSensor *pAltSensor = new BME280AltSensor(0x5220);
 
   hub.addSensor(pSensor1);
-  hub.addSensor(pSensor2);
-  hub.addSensor(pSensor3);
+  hub.addSensor(pVoltageSensor);
+  hub.addSensor(pAltSensor);
 
   pStream->begin(S_PORT_BAUD, SERIAL_8N1);
   pStream->listen();
