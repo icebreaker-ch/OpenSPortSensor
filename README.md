@@ -19,6 +19,9 @@ However, if you choose, to use Hardware-Serial, you have to invert signals
 between the *Arduino* RX/TX pins and the Receivers S-Port and combine the RX/TX channels to use only one wire.
 For this purpose, I recommend the RS-232 Inverter by Bernd Feiler described here:
 [RS-232 Inverter by Bernd Feiler](https://discuss.ardupilot.org/uploads/short-url/sCX6JsKOJ3IDqZxHaSJgylAd1YR.pdf)
+Here the Inverter, I built for myself from the above description:
+![RS232-Inverter](./images/RS323-Inverter.png)
+
 ### Differences between Hardware- and Software-Serial
 | Hardware Serial               | Software Serial                       |
 | -                             | -                                     |
