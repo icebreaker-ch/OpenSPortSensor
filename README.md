@@ -7,4 +7,4 @@ The main goals for this project were:
 - Support Hardware- and Software-Serial interfaces
 - Supply a set of standard sensors for e.g. voltage and current measurement
 
-The Documentation for this project is in the (wiki)[https://github.com/icebreaker-ch/OpenSPortSensor/wiki]
+The Documentation for this project can be found in the [wiki](https://github.com/icebreaker-ch/OpenSPortSensor/wiki)
