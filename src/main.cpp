@@ -4,7 +4,9 @@
 #include "Sensor.h"
 #include "SimpleSensor.h"
 #include "VoltageSensor.h"
-#include "BME280AltSensor.h"
+#include "BME280.h"
+#include "BME280VarioAltitudeSensor.h"
+#include "BME280VarioVSpeedSensor.h"
 #include "TxData.h"
 #include "SPortWriter.h"
 #include "SPortStream.h"
@@ -24,14 +26,17 @@ void setup() {
   Serial.begin(9600); // For debugging output
   analogReference(ANALOG_REFERENCE);
 
-
+  // Add required sensors here
   SimpleSensor *pSensor1 = new SimpleSensor(0x5200);
   VoltageSensor *pVoltageSensor = new VoltageSensor(0x5210, A0, 10000, 2200);
-  BME280AltSensor *pAltSensor = new BME280AltSensor(0x5220);
+  BME280 *pBme = new BME280();
+  BME280VarioAltiudeSensor *pAltSensor = new BME280VarioAltiudeSensor(*pBme);
+  BME280VarioVSpeedSensor *pVSpeedSensor = new BME280VarioVSpeedSensor(*pBme);
 
   hub.addSensor(pSensor1);
   hub.addSensor(pVoltageSensor);
   hub.addSensor(pAltSensor);
+  hub.addSensor(pVSpeedSensor);
 
   pStream->begin(S_PORT_BAUD, SERIAL_8N1);
   pStream->listen();
