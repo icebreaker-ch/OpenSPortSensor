@@ -9,15 +9,21 @@ MeanValueFilter::MeanValueFilter(unsigned int maxValues) :
         pValues = new float[maxValues];
 }
 
+void MeanValueFilter::reset()
+{
+    numValues = 0;
+    index = 0;
+}
+
 void MeanValueFilter::addValue(float newValue) {
-    index = (index + 1) % maxValues;
+    index = (index + 1) % maxValues; // Ringbuffer
         pValues[index] = newValue;
     numValues = min(numValues + 1, maxValues);
 }
 
-bool MeanValueFilter::isFilteredValueAvailable()
+unsigned int MeanValueFilter::getNumValues()
 {
-    return numValues >= 0;
+    return numValues;
 }
 
 float MeanValueFilter::getFilteredValue() {
@@ -27,7 +33,5 @@ float MeanValueFilter::getFilteredValue() {
     for (int i = 0; i < numValues; ++i) {
         sum += pValues[i];
     }
-    numValues = 0;
-    index = 0;
     return sum / (float)numValues;
 }

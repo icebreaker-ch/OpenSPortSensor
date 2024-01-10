@@ -7,6 +7,7 @@
 #include "BME280.h"
 #include "BME280VarioAltitudeSensor.h"
 #include "BME280VarioVSpeedSensor.h"
+#include "MeanValueFilter.h"
 #include "TxData.h"
 #include "SPortWriter.h"
 #include "SPortStream.h"
@@ -24,14 +25,19 @@ static SensorHub hub = SensorHub(PHYSICAL_ID11);
 
 void setup() {
   Serial.begin(9600); // For debugging output
+    
   analogReference(ANALOG_REFERENCE);
 
   // Add required sensors here
   SimpleSensor *pSensor1 = new SimpleSensor(0x5200);
   VoltageSensor *pVoltageSensor = new VoltageSensor(0x5210, A0, 10000, 2200);
+
+  // Vario
   BME280 *pBme = new BME280();
   BME280VarioAltiudeSensor *pAltSensor = new BME280VarioAltiudeSensor(*pBme);
   BME280VarioVSpeedSensor *pVSpeedSensor = new BME280VarioVSpeedSensor(*pBme);
+  Filter *pFilter = new MeanValueFilter(20);
+  pVSpeedSensor->setFilter(pFilter);
 
   hub.addSensor(pSensor1);
   hub.addSensor(pVoltageSensor);
