@@ -5,6 +5,7 @@
 #include "SimpleSensor.h"
 #include "VoltageSensor.h"
 #include "BME280.h"
+#include "BME280AltSensor.h"
 #include "BME280VarioAltitudeSensor.h"
 #include "BME280VarioVSpeedSensor.h"
 #include "MeanValueFilter.h"
@@ -12,6 +13,7 @@
 #include "SPortWriter.h"
 #include "SPortStream.h"
 
+#define DEBUG
 #define START_BYTE 0x7E
 
 #ifdef USE_HARDWARE_SERIAL
@@ -24,25 +26,33 @@ static SPortWriter *pSPortWriter;
 static SensorHub hub = SensorHub(PHYSICAL_ID11);
 
 void setup() {
+#ifdef DEBUG
   Serial.begin(9600); // For debugging output
+#endif
     
   analogReference(ANALOG_REFERENCE);
 
   // Add required sensors here
-  SimpleSensor *pSensor1 = new SimpleSensor(0x5200);
-  VoltageSensor *pVoltageSensor = new VoltageSensor(0x5210, A0, 10000, 2200);
+  // Test sensors
+  //SimpleSensor *pSensor1 = new SimpleSensor(0x5200);
+
+  // Voltage Sensors
+  // VoltageSensor *pVoltageSensor = new VoltageSensor(0x5210, A0, 10000, 2200);
+
+  // Altitude
+  // BME280AltSensor *pAltSensor = new BME280AltSensor(0x100);
 
   // Vario
   BME280 *pBme = new BME280();
   BME280VarioAltiudeSensor *pAltSensor = new BME280VarioAltiudeSensor(*pBme);
-  BME280VarioVSpeedSensor *pVSpeedSensor = new BME280VarioVSpeedSensor(*pBme);
+  BME280VarioVSpeedSensor *pVerticalSpeedSensor = new BME280VarioVSpeedSensor(*pBme);
   Filter *pFilter = new MeanValueFilter(20);
-  pVSpeedSensor->setFilter(pFilter);
+  pVerticalSpeedSensor->setFilter(pFilter);
 
-  hub.addSensor(pSensor1);
-  hub.addSensor(pVoltageSensor);
+  //hub.addSensor(pSensor1);
+  //hub.addSensor(pVoltageSensor);
   hub.addSensor(pAltSensor);
-  hub.addSensor(pVSpeedSensor);
+  hub.addSensor(pVerticalSpeedSensor);
 
   pStream->begin(S_PORT_BAUD, SERIAL_8N1);
   pStream->listen();

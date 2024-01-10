@@ -1,6 +1,6 @@
 #ifndef MEAN_VALUE_FILTER_H
 #define MEAN_VALUE_FILTER_H
-#include "Filter.h"
+#include <Filter.h>
 
     class MeanValueFilter : public Filter {
         public:

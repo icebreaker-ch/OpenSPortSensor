@@ -1,6 +1,6 @@
-#include <assert.h>
-#include <Arduino.h>
 #include "MeanValueFilter.h"
+
+#define MIN(a, b) a <= b ? a : b;
 
 MeanValueFilter::MeanValueFilter(unsigned int maxValues) :
     index(0),
@@ -16,9 +16,9 @@ void MeanValueFilter::reset()
 }
 
 void MeanValueFilter::addValue(float newValue) {
+    pValues[index] = newValue;
     index = (index + 1) % maxValues; // Ringbuffer
-        pValues[index] = newValue;
-    numValues = min(numValues + 1, maxValues);
+    numValues = MIN(numValues + 1, maxValues);
 }
 
 unsigned int MeanValueFilter::getNumValues()
@@ -27,11 +27,13 @@ unsigned int MeanValueFilter::getNumValues()
 }
 
 float MeanValueFilter::getFilteredValue() {
-    assert(numValues > 0);
-
-    float sum = 0;
-    for (int i = 0; i < numValues; ++i) {
-        sum += pValues[i];
+    float mean = 0.0;
+    if (numValues > 0) {
+        float sum = 0;
+         for (unsigned int i = 0; i < numValues; ++i) {
+            sum += pValues[i];
+         }
+        mean = sum / numValues;
     }
-    return sum / (float)numValues;
+    return mean;
 }
