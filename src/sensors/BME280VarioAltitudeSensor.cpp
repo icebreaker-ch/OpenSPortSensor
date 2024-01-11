@@ -3,7 +3,7 @@
 
 #define PRECISION 100.0
 
-BME280VarioAltiudeSensor::BME280VarioAltiudeSensor(BME280 &bme280, int sensorId) :
+BME280VarioAltiudeSensor::BME280VarioAltiudeSensor(BME280 &bme280, unsigned int sensorId) :
     Sensor(sensorId),
     bme280(bme280) {
 }

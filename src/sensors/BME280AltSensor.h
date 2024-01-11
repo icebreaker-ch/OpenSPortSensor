@@ -10,7 +10,7 @@
 
 class BME280AltSensor : public Sensor {
     public:
-        BME280AltSensor(int sensorId, uint8_t address = BME280_ADDR);
+        BME280AltSensor(unsigned int sensorId, uint8_t address = BME280_ADDR);
         long getValue();
     private:
         Adafruit_BME280 bme;

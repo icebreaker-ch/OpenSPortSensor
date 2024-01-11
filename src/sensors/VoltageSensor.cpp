@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include "VoltageSensor.h"
 
-VoltageSensor::VoltageSensor(int sensorId, uint8_t analogPin, long resistorToVoltage, long resistorToGround) :
+VoltageSensor::VoltageSensor(unsigned int sensorId, uint8_t analogPin, long resistorToVoltage, long resistorToGround) :
     Sensor(sensorId),
     analogPin(analogPin),
     resistorToVoltage(resistorToVoltage),

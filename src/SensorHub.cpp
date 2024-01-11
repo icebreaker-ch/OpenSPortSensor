@@ -1,6 +1,6 @@
 #include "SensorHub.h"
 
-SensorHub::SensorHub(PhysicalId physicalId, int maxSensorCount) :
+SensorHub::SensorHub(PhysicalId physicalId, unsigned int maxSensorCount) :
     physicalId(physicalId),
     sensorCount(0),
     currentSensorIndex(0)

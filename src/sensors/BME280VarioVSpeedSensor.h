@@ -8,7 +8,7 @@
 
 class BME280VarioVSpeedSensor : public Sensor {
     public:
-        BME280VarioVSpeedSensor(BME280 &bme280, int sensorId = VARIO_FIRST_ID);
+        BME280VarioVSpeedSensor(BME280 &bme280, unsigned int sensorId = VARIO_FIRST_ID);
         void setFilter(Filter *pFilter);
         long getValue();
 

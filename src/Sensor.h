@@ -6,7 +6,7 @@
 */
 class Sensor {
     public:
-        Sensor(int sensorId) :
+        Sensor(unsigned int sensorId) :
             sensorId(sensorId) {
         }
 
@@ -17,6 +17,6 @@ class Sensor {
         virtual long getValue() = 0;
 
     private:
-        int sensorId;
+        unsigned int sensorId;
 };
 #endif

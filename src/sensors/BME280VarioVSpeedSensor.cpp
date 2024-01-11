@@ -6,7 +6,7 @@
 #define MILLISECONDS_PER_SECOND 1000
 #define PRECISION 100 // Factor
 
-BME280VarioVSpeedSensor::BME280VarioVSpeedSensor(BME280 &bme280, int sensorId) :
+BME280VarioVSpeedSensor::BME280VarioVSpeedSensor(BME280 &bme280, unsigned int sensorId) :
     Sensor(sensorId),
     bme280(bme280),
     lastMillis(0),

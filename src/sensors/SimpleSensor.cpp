@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include "SimpleSensor.h"
 
-SimpleSensor::SimpleSensor(int sensorId) :
+SimpleSensor::SimpleSensor(unsigned int sensorId) :
     Sensor(sensorId)
 {
 }

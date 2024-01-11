@@ -7,7 +7,7 @@
 
 class BME280VarioAltiudeSensor : public Sensor {
     public:
-        BME280VarioAltiudeSensor(BME280 &bme280, int sensorId = ALT_FIRST_ID);
+        BME280VarioAltiudeSensor(BME280 &bme280, unsigned int sensorId = ALT_FIRST_ID);
         long getValue();
 
     private:

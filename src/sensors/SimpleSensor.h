@@ -5,7 +5,7 @@
 
 class SimpleSensor : public Sensor {
     public:
-        SimpleSensor(int sensorId);
+        SimpleSensor(unsigned int sensorId);
         long getValue();
 };
 
