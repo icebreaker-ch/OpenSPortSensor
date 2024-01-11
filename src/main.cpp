@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#include "log.h"
 #include "config.h"
 #include "SensorHub.h"
 #include "Sensor.h"
@@ -13,7 +14,6 @@
 #include "SPortWriter.h"
 #include "SPortStream.h"
 
-#define DEBUG
 #define START_BYTE 0x7E
 
 #ifdef USE_HARDWARE_SERIAL
@@ -26,7 +26,7 @@ static SPortWriter *pSPortWriter;
 static SensorHub hub = SensorHub(PHYSICAL_ID11);
 
 void setup() {
-#ifdef DEBUG
+#ifdef LOGGING_ON
   Serial.begin(9600); // For debugging output
 #endif
     

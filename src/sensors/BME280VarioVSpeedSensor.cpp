@@ -1,6 +1,6 @@
 #include "BME280VarioVSpeedSensor.h"
+#include "log.h"
 
-//#define DEBUG_VARIO_VSPEED
 #define READ_SENSOR_INTERVAL 100 //mS
 #define UPDATE_INTERVAL 500 // mS
 #define MILLISECONDS_PER_SECOND 1000
@@ -38,16 +38,7 @@ long BME280VarioVSpeedSensor::getValue()
         float diffAltitude = currentValidAltitude - lastValidAltitude;
         currentVSpeed = diffAltitude * MILLISECONDS_PER_SECOND / diffMillis;
 
-#ifdef DEBUG_VARIO_VSPEED
-        Serial.print("old: ");
-        Serial.print(lastValidAltitude);
-        Serial.print(" current: ");
-        Serial.print(currentValidAltitude);
-        Serial.print(" diff: ");
-        Serial.print(diffAltitude);
-        Serial.print(" result: ");
-        Serial.println((long)(round(PRECISION * currentVSpeed)));
-#endif
+        LOG("old: ", lastValidAltitude, " current: ", currentValidAltitude, " diff: ", diffAltitude, " vSpeed: ", currentVSpeed, "\n");
         lastMillis = currentMillis;
         lastValidAltitude = currentValidAltitude;
         pFilter->reset();
