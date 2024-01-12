@@ -7,31 +7,32 @@
 
     template <class T> class LinkedList {
         public:
-            LinkedList(T) :
-                pFirst(nullptr) {                
+            LinkedList() :
+                pHead(nullptr) {                
             }
 
-            void append(T element) {
-                if (pFirst == nullptr) {
-                    pFirst = new LinkedListElement();
-                    pFirst->element = element;
-                    pFirst->pNext = null;
-                } else {
-                    LinkedListElement *p = pFirst;
-                    while (p->pNext != nullptr)
-                        p = p->pNext;
-                    p = new LinkedListElement();
-                    p->element = element;
-                    p->pNext = null;                    
+            ~LinkedList() {
+                LinkedListElement<T> *p = pHead;
+                while (p) {
+                    LinkedListElement<T> *pNext = p->pNext;
+                    delete p;
+                    p = pNext;
                 }
             }
 
-            LinkedListElement<T> *getFirst() {
-                return pFirst:
+            void add(T element) {
+                LinkedListElement<T> *p = new LinkedListElement<T>();
+                p->element = element;
+                p->pNext = pHead;
+                pHead = p;
+            }
+
+            LinkedListElement<T> *getHead() {
+                return pHead;
             }
 
         private:
-            LinkedListElement<T> *pFirst;
+            LinkedListElement<T> *pHead;
     };
 
 #endif
