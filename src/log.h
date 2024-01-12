@@ -8,8 +8,7 @@
 //#define LOGGING_ON
 
 #ifdef LOGGING_ON
-    static void printLog () {
-    }
+    extern void printLog();
 
     template<class T, class... Types>
     void printLog (T firstArg, Types... args) {
