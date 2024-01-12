@@ -1,11 +1,12 @@
 #include "SensorHub.h"
+#include "config.h"
 
-SensorHub::SensorHub(PhysicalId physicalId, unsigned int maxSensorCount) :
+SensorHub::SensorHub(PhysicalId physicalId) :
     physicalId(physicalId),
     sensorCount(0),
     currentSensorIndex(0)
 {
-    pSensors = new Sensor*[maxSensorCount];
+    pSensors = new Sensor*[MAX_SENSORS];
 }
 
 void SensorHub::addSensor(Sensor *pSensor) {

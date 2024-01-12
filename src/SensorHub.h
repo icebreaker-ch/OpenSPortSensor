@@ -7,7 +7,7 @@
 
 class SensorHub {
     public:
-        SensorHub(PhysicalId physicalId, unsigned int maxSensorCount = DEFAULT_MAX_SENSORS);
+        SensorHub(PhysicalId physicalId);
         void addSensor(Sensor *pSensor);
         int getPhysicalId();
         Sensor *getNextSensor();
