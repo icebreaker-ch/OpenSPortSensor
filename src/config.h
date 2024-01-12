@@ -1,6 +1,8 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
+#include "global.h"
+
 /**
  * Uncomment this, if you want to use the Hardware Serial interface (RX/TX Pins)
  * on your board to handle the communication between the Arduino and the Receiver.
@@ -21,6 +23,12 @@
  * which should be fine.
 */
 #define S_PORT_BAUD 57600
+
+/**
+ * Define the Physical ID of the Hub
+ * Choose one of the defined IDs which is not used by another sensor in your system.
+*/
+#define PHYSICAL_ID PHYSICAL_ID11
 
 /**
  * Define, what to use as the analog reference voltage.

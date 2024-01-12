@@ -23,7 +23,7 @@
 #endif
 
 static SPortWriter *pSPortWriter;
-static SensorHub hub = SensorHub(PHYSICAL_ID11);
+static SensorHub hub = SensorHub(PHYSICAL_ID);
 
 void setup() {
 #ifdef LOGGING_ON
