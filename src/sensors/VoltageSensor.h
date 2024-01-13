@@ -27,7 +27,7 @@
 class VoltageSensor : public Sensor
 {
     public:
-        VoltageSensor(unsigned int sensorId, uint8_t analogPin, long resistorToVoltage, long resistorToGround);
+        VoltageSensor(uint8_t analogPin, long resistorToVoltage, long resistorToGround, unsigned int sensorId = VFAS_FIRST_ID);
         long getValue();
 
     private:

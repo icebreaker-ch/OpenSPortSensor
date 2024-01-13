@@ -5,7 +5,7 @@
 
 #define STANDARD_SEALEVEL_PRESSURE 1013.25
 
-BME280AltSensor::BME280AltSensor(unsigned int sensorId, uint8_t address) :
+BME280AltSensor::BME280AltSensor(uint8_t address, unsigned int sensorId) :
     Sensor(sensorId) {
     bme.begin(address);
 }

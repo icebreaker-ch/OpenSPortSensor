@@ -37,7 +37,7 @@ void setup() {
   //SimpleSensor *pSensor1 = new SimpleSensor(0x5200);
 
   // Voltage Sensors
-  // VoltageSensor *pVoltageSensor = new VoltageSensor(0x5210, A0, 10000, 2200);
+  VoltageSensor *pVoltageSensor = new VoltageSensor(A0, 15000, 3300);
 
   // Altitude
   // BME280AltSensor *pAltSensor = new BME280AltSensor(0x100);
@@ -50,7 +50,7 @@ void setup() {
   pVerticalSpeedSensor->setFilter(pFilter);
 
   //hub.addSensor(pSensor1);
-  //hub.addSensor(pVoltageSensor);
+  hub.addSensor(pVoltageSensor);
   hub.addSensor(pAltSensor);
   hub.addSensor(pVerticalSpeedSensor);
 

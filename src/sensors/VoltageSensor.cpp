@@ -1,11 +1,11 @@
 #include <Arduino.h>
 #include "VoltageSensor.h"
 
-VoltageSensor::VoltageSensor(unsigned int sensorId, uint8_t analogPin, long resistorToVoltage, long resistorToGround) :
-    Sensor(sensorId),
+VoltageSensor::VoltageSensor(uint8_t analogPin, long resistorToVoltage, long resistorToGround, unsigned int sensorId) :
     analogPin(analogPin),
     resistorToVoltage(resistorToVoltage),
-    resistorToGround(resistorToGround) {
+    resistorToGround(resistorToGround),
+    Sensor(sensorId) {
 }
 
 long VoltageSensor::getValue() {
