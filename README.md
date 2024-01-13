@@ -8,3 +8,12 @@ The main goals for this project were:
 - Supply a set of standard sensors for e.g. voltage and current measurement
 
 The Documentation for this project can be found in the [wiki](https://github.com/icebreaker-ch/OpenSPortSensor/wiki)
+
+<p align="center">
+  <img src="images/FirstPrototype.jpg" width="350" title="First Prototype">
+  <img src="images/ArduinoProMicro.jpg" width="350" alt="Voltage and Vario Sensor with Arduino Pro Micro">
+</p>
+
+[First Prototype](https://github.com/icebreaker-ch/OpenSPortSensor/blob/main/images/FirstPrototype.jpg)
+
+[Arduino Pro Micro](https://github.com/icebreaker-ch/OpenSPortSensor/blob/main/images/ArduinoProMicro.jpg)
