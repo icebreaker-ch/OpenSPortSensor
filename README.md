@@ -10,10 +10,20 @@ The main goals for this project were:
 The Documentation for this project can be found in the [wiki](https://github.com/icebreaker-ch/OpenSPortSensor/wiki)
 
 <p align="center">
-  <img src="images/FirstPrototype.jpg" width="350" title="First Prototype">
-  <img src="images/ArduinoProMicro.jpg" width="350" alt="Voltage and Vario Sensor with Arduino Pro Micro">
+  <table>
+    <tr>
+      <td align="center">
+        <figure>
+          <img src="images/FirstPrototype.jpg" width="350" title="First Prototype"><br/>
+          <figcaption>First Prototype</figcaption>
+        </figure>
+      </td>
+      <td align="center">
+        <figure>
+          <img src="images/ArduinoProMicro.jpg" width="350" title="Voltage and Vario Sensor with Arduino Pro Micro"><br/>
+          <figcaption>Arduino Pro Micro</figcaption>
+        </figure>
+        </td>
+    </tr>
+  </table>
 </p>
-
-[First Prototype](https://github.com/icebreaker-ch/OpenSPortSensor/blob/main/images/FirstPrototype.jpg)
-
-[Arduino Pro Micro](https://github.com/icebreaker-ch/OpenSPortSensor/blob/main/images/ArduinoProMicro.jpg)
