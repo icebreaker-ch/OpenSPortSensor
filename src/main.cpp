@@ -37,7 +37,7 @@ void setup() {
   //SimpleSensor *pSensor1 = new SimpleSensor(0x5200);
 
   // Voltage Sensors
-  VoltageSensor *pVoltageSensor = new VoltageSensor(A0, 15000, 3300);
+  VoltageSensor *pVoltageSensor = new VoltageSensor(A0, 15000, 3300, VFAS_FIRST_ID + 1);
 
   // Altitude
   // BME280AltSensor *pAltSensor = new BME280AltSensor(0x100);

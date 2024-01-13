@@ -2,10 +2,10 @@
 #include "VoltageSensor.h"
 
 VoltageSensor::VoltageSensor(uint8_t analogPin, long resistorToVoltage, long resistorToGround, unsigned int sensorId) :
+    Sensor(sensorId),
     analogPin(analogPin),
     resistorToVoltage(resistorToVoltage),
-    resistorToGround(resistorToGround),
-    Sensor(sensorId) {
+    resistorToGround(resistorToGround) {
 }
 
 long VoltageSensor::getValue() {
