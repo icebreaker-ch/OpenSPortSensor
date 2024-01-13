@@ -27,3 +27,5 @@ The Documentation for this project can be found in the [wiki](https://github.com
     </tr>
   </table>
 </p>
+
+See here for an [Example configuration of the prototype](https://github.com/icebreaker-ch/OpenSPortSensor/blob/main/images/ExampleConfiguration.pdf)
