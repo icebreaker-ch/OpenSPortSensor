@@ -8,3 +8,7 @@ The main goals for this project were:
 - Supply a set of standard sensors for e.g. voltage and current measurement
 
 The Documentation for this project can be found in the [wiki](https://github.com/icebreaker-ch/OpenSPortSensor/wiki)
+
+[First Prototype](https://github.com/icebreaker-ch/OpenSPortSensor/blob/main/images/FirstPrototype.jpg)
+
+[Arduino Pro Micro](https://github.com/icebreaker-ch/OpenSPortSensor/blob/main/images/ArduinoProMicro.jpg)
