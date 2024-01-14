@@ -37,17 +37,21 @@ void setup() {
   //SimpleSensor *pSensor1 = new SimpleSensor(0x5200);
 
   // Voltage Sensors
-  VoltageSensor *pVoltageSensor = new VoltageSensor(A0, 15000, 3300, VFAS_FIRST_ID + 1);
+  VoltageSensor *pVoltageSensor = new VoltageSensor(A0, 15000, 3300);
+  pVoltageSensor->setReportInterval(500);
+  pVoltageSensor->setFilter(new MeanValueFilter());
 
   // Altitude
   // BME280AltSensor *pAltSensor = new BME280AltSensor(0x100);
 
   // Vario
-  BME280 *pBme = new BME280();
-  BME280VarioAltiudeSensor *pAltSensor = new BME280VarioAltiudeSensor(*pBme);
-  BME280VarioVerticalSpeedSensor *pVerticalSpeedSensor = new BME280VarioVerticalSpeedSensor(*pBme);
-  Filter *pFilter = new MeanValueFilter();
-  pVerticalSpeedSensor->setFilter(pFilter);
+  BME280 *pBme280 = new BME280();
+  BME280VarioAltiudeSensor *pAltSensor = new BME280VarioAltiudeSensor(pBme280);
+  pAltSensor->setReportInterval(500);
+  pAltSensor->setFilter(new MeanValueFilter());
+  BME280VarioVerticalSpeedSensor *pVerticalSpeedSensor = new BME280VarioVerticalSpeedSensor(pBme280);
+  pVerticalSpeedSensor->setReportInterval(500);
+  pVerticalSpeedSensor->setFilter(new MeanValueFilter());
 
   //hub.addSensor(pSensor1);
   hub.addSensor(pVoltageSensor);

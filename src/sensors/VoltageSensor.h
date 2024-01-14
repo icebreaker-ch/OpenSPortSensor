@@ -3,6 +3,7 @@
 
 #include "config.h"
 #include "Sensor.h"
+#include "Filter.h"
 
 /**
  * A voltage measurement sensor.
@@ -27,13 +28,21 @@
 class VoltageSensor : public Sensor
 {
     public:
-        VoltageSensor(uint8_t analogPin, long resistorToVoltage, long resistorToGround, unsigned int sensorId = VFAS_FIRST_ID);
+        VoltageSensor(uint8_t analogPin, long resistorToVoltage, long resistorToGround, unsigned int sensorId = VFAS_FIRST_ID + 1);
+        void setReportInterval(unsigned long reportInterval);
+        void setFilter(Filter *pFilter);
         long getValue();
 
     private:
+        static const unsigned int PRECISION = 100; // 2 digits
+
         uint8_t analogPin;
         long resistorToVoltage;
         long resistorToGround;
+        unsigned long reportInterval;
+        unsigned long lastReportMillis;
+        double lastReportVoltage;
+        Filter *pFilter;
 };
 
 #endif

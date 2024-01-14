@@ -8,15 +8,19 @@
 
 class BME280VarioVerticalSpeedSensor : public Sensor {
     public:
-        BME280VarioVerticalSpeedSensor(BME280 &bme280, unsigned int sensorId = VARIO_FIRST_ID);
+        BME280VarioVerticalSpeedSensor(BME280 *pBbme280, unsigned int sensorId = VARIO_FIRST_ID);
+        void setReportInterval(unsigned long reportInterval);
         void setFilter(Filter *pFilter);
         long getValue();
 
     private:
-        BME280 &bme280;
-        unsigned long lastMillis;
-        float lastValidAltitude;
-        float currentVSpeed;
+        static const unsigned int PRECISION = 100; // Precision 2 digits
+
+        BME280 *pBme280;
+        unsigned long reportInterval;
+        unsigned long lastReportMillis;
+        float lastReportAltitude;
+        float lastReportVerticalSpeed;
         Filter *pFilter;
 };
 
