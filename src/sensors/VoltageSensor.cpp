@@ -36,10 +36,13 @@ long VoltageSensor::getValue() {
         lastReportVoltage = inputVoltage;
     } else if (diffMillis < reportInterval) { // Collecting data
         if (pFilter) {
-            pFilter->addValue(pinVoltage);
+            pFilter->addValue(inputVoltage);
         }
         reportVoltage = lastReportVoltage; // Report last Voltage
     } else { // Report new value
+        if (pFilter) {
+            pFilter->addValue(inputVoltage);
+        }
         reportVoltage = pFilter ? pFilter->getFilteredValue() : inputVoltage;
         if (pFilter) {
             pFilter->reset();
