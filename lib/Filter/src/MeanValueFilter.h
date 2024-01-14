@@ -4,15 +4,12 @@
 
     class MeanValueFilter : public Filter {
         public:
-            MeanValueFilter(unsigned int maxValues);
+            MeanValueFilter();
             void reset();
             void addValue(float newValue);
-            unsigned int getNumValues();
             float getFilteredValue();
         private:
-            unsigned int index;
-            unsigned int maxValues;
             unsigned int numValues;
-            float *pValues;
+            float sum;
     };
 #endif

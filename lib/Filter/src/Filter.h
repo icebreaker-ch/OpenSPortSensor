@@ -8,7 +8,6 @@ class Filter {
     public:
         virtual void reset() = 0;
         virtual void addValue(float newValue) = 0;
-        virtual unsigned int getNumValues() = 0;
         virtual float getFilteredValue() = 0;
         virtual ~Filter() {}
 };

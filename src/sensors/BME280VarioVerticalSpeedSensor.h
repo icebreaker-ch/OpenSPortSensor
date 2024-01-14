@@ -6,9 +6,9 @@
 #include "BME280.h"
 #include "Filter.h"
 
-class BME280VarioVSpeedSensor : public Sensor {
+class BME280VarioVerticalSpeedSensor : public Sensor {
     public:
-        BME280VarioVSpeedSensor(BME280 &bme280, unsigned int sensorId = VARIO_FIRST_ID);
+        BME280VarioVerticalSpeedSensor(BME280 &bme280, unsigned int sensorId = VARIO_FIRST_ID);
         void setFilter(Filter *pFilter);
         long getValue();
 

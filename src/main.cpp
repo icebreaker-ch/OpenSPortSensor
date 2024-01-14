@@ -9,7 +9,7 @@
 #include "BME280.h"
 #include "BME280AltSensor.h"
 #include "BME280VarioAltitudeSensor.h"
-#include "BME280VarioVSpeedSensor.h"
+#include "BME280VarioVerticalSpeedSensor.h"
 #include "MeanValueFilter.h"
 #include "SPortWriter.h"
 #include "SPortStream.h"
@@ -45,8 +45,8 @@ void setup() {
   // Vario
   BME280 *pBme = new BME280();
   BME280VarioAltiudeSensor *pAltSensor = new BME280VarioAltiudeSensor(*pBme);
-  BME280VarioVSpeedSensor *pVerticalSpeedSensor = new BME280VarioVSpeedSensor(*pBme);
-  Filter *pFilter = new MeanValueFilter(20);
+  BME280VarioVerticalSpeedSensor *pVerticalSpeedSensor = new BME280VarioVerticalSpeedSensor(*pBme);
+  Filter *pFilter = new MeanValueFilter();
   pVerticalSpeedSensor->setFilter(pFilter);
 
   //hub.addSensor(pSensor1);
