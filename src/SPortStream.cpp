@@ -7,13 +7,6 @@ SPortStream::SPortStream(Stream *pStream) :
 {
 }
 
-// SPortStream::SPortStream(HardwareSerial *pHardwareStream) :
-//     isSoftwareStream(false),
-//     pin(0),
-//     pStream(pHardwareStream)
-// {
-// }
-
 SPortStream::SPortStream(int pin) :
     isSoftwareStream(true),
     pin(pin) {

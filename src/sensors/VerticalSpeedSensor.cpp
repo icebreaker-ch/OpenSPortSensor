@@ -1,11 +1,11 @@
-#include "BME280VarioVerticalSpeedSensor.h"
+#include "VerticalSpeedSensor.h"
 #include "log.h"
 
 #define MILLISECONDS_PER_SECOND 1000
 
-BME280VarioVerticalSpeedSensor::BME280VarioVerticalSpeedSensor(BME280 *pBme280, unsigned int sensorId) :
+VerticalSpeedSensor::VerticalSpeedSensor(IAltitudeSensor *pAltitudeSensor, unsigned int sensorId) :
     Sensor(sensorId),
-    pBme280(pBme280),
+    pAltitudeSensor(pAltitudeSensor),
     reportInterval(0L),
     lastReportMillis(0L),
     lastReportAltitude(0.0F),
@@ -13,19 +13,19 @@ BME280VarioVerticalSpeedSensor::BME280VarioVerticalSpeedSensor(BME280 *pBme280, 
     pFilter(nullptr) {
 }
 
-void BME280VarioVerticalSpeedSensor::setReportInterval(unsigned long reportInterval) {
+void VerticalSpeedSensor::setReportInterval(unsigned long reportInterval) {
     this->reportInterval = reportInterval;
 }
 
-void BME280VarioVerticalSpeedSensor::setFilter(Filter *pFilter)
+void VerticalSpeedSensor::setFilter(Filter *pFilter)
 {
     this->pFilter = pFilter;
 }
 
-long BME280VarioVerticalSpeedSensor::getValue()
+long VerticalSpeedSensor::getValue()
 {
     unsigned long currentMillis = millis();
-    float altitudeRead = pBme280->readAltitude();
+    float altitudeRead = pAltitudeSensor->readAltitude();
 
     unsigned long diffMillis = currentMillis - lastReportMillis;
     float currentVerticalSpeed;

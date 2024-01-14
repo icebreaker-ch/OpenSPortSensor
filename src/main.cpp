@@ -7,9 +7,8 @@
 #include "SimpleSensor.h"
 #include "VoltageSensor.h"
 #include "BME280.h"
-#include "BME280AltSensor.h"
-#include "BME280VarioAltitudeSensor.h"
-#include "BME280VarioVerticalSpeedSensor.h"
+#include "AltitudeSensor.h"
+#include "VerticalSpeedSensor.h"
 #include "MeanValueFilter.h"
 #include "SPortWriter.h"
 #include "SPortStream.h"
@@ -41,15 +40,12 @@ void setup() {
   pVoltageSensor->setReportInterval(500);
   pVoltageSensor->setFilter(new MeanValueFilter());
 
-  // Altitude
-  // BME280AltSensor *pAltSensor = new BME280AltSensor(0x100);
-
   // Vario
-  BME280 *pBme280 = new BME280();
-  BME280VarioAltiudeSensor *pAltSensor = new BME280VarioAltiudeSensor(pBme280);
+  IAltitudeSensor *pBme280 = new BME280();
+  AltiudeSensor *pAltSensor = new AltiudeSensor(pBme280);
   pAltSensor->setReportInterval(500);
   pAltSensor->setFilter(new MeanValueFilter());
-  BME280VarioVerticalSpeedSensor *pVerticalSpeedSensor = new BME280VarioVerticalSpeedSensor(pBme280);
+  VerticalSpeedSensor *pVerticalSpeedSensor = new VerticalSpeedSensor(pBme280);
   pVerticalSpeedSensor->setReportInterval(500);
   pVerticalSpeedSensor->setFilter(new MeanValueFilter());
 

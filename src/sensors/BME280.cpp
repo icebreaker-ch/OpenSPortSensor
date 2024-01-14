@@ -1,7 +1,5 @@
 #include "BME280.h"
 
-#define STANDARD_SEALEVEL_PRESSURE 1013.25
-
 BME280::BME280(uint8_t address) {
     bme.begin(address);
 }

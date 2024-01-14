@@ -3,8 +3,6 @@
 #include "global.h"
 #include "Sensor.h"
 
-#define DEFAULT_MAX_SENSORS 10
-
 class SensorHub {
     public:
         SensorHub(PhysicalId physicalId);

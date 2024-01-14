@@ -1,28 +1,28 @@
 #include "log.h"
-#include "BME280VarioAltitudeSensor.h"
+#include "AltitudeSensor.h"
 
-BME280VarioAltiudeSensor::BME280VarioAltiudeSensor(BME280 *pBme280, unsigned int sensorId) :
+AltiudeSensor::AltiudeSensor(IAltitudeSensor *pAltitudeSensor, unsigned int sensorId) :
     Sensor(sensorId),
-    pBme280(pBme280),
+    pAltitudeSensor(pAltitudeSensor),
     reportInterval(0),
     lastReportMillis(0L),
     lastReportValue(0L),
     pFilter(nullptr) {
 }
 
-void BME280VarioAltiudeSensor::setReportInterval(unsigned long reportInterval) {
+void AltiudeSensor::setReportInterval(unsigned long reportInterval) {
     this->reportInterval = reportInterval;
 }
 
-void BME280VarioAltiudeSensor::setFilter(Filter *pFilter)
+void AltiudeSensor::setFilter(Filter *pFilter)
 {
     this->pFilter = pFilter;
 }
 
-long BME280VarioAltiudeSensor::getValue()
+long AltiudeSensor::getValue()
 {
     long currentMillis = millis();
-    float altitude = pBme280->readAltitude();
+    float altitude = pAltitudeSensor->readAltitude();
     if (pFilter) {
         pFilter->addValue(altitude);
     }

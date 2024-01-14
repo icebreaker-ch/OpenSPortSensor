@@ -4,6 +4,9 @@
 #include "global.h"
 #include "Sensor.h"
 
+/**
+ * A simple sensor wich returns a new value for each call.
+*/
 class SimpleSensor : public Sensor {
     public:
         SimpleSensor(unsigned int sensorId = DIY_FIRST_ID);
