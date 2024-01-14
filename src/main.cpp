@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#include <TxData.h>
 #include "log.h"
 #include "config.h"
 #include "SensorHub.h"
@@ -10,7 +11,6 @@
 #include "BME280VarioAltitudeSensor.h"
 #include "BME280VarioVSpeedSensor.h"
 #include "MeanValueFilter.h"
-#include "TxData.h"
 #include "SPortWriter.h"
 #include "SPortStream.h"
 
