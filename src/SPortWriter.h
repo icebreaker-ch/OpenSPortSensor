@@ -5,7 +5,7 @@
 
 class SPortWriter {
     public:
-        SPortWriter(Stream *pStream);
+        explicit SPortWriter(Stream *pStream);
         void write(unsigned char byte);
     private:
         Stream *pStream;    

@@ -5,9 +5,9 @@
     class MeanValueFilter : public Filter {
         public:
             MeanValueFilter();
-            void reset();
-            void addValue(float newValue);
-            float getFilteredValue();
+            void reset() override;
+            void addValue(float newValue) override;
+            float getFilteredValue() override;
         private:
             unsigned int numValues;
             float sum;

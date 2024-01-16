@@ -31,7 +31,7 @@ class VoltageSensor : public Sensor
         VoltageSensor(uint8_t analogPin, long resistorToVoltage, long resistorToGround, unsigned int sensorId = VFAS_FIRST_ID + 1);
         void setReportInterval(unsigned long reportInterval);
         void setFilter(Filter *pFilter);
-        long getValue();
+        long getValue() override;
 
     private:
         static const unsigned int PRECISION = 100; // 2 digits

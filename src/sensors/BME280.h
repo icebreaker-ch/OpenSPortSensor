@@ -10,8 +10,8 @@
 */
 class BME280  : public IAltitudeSensor {
     public:
-        BME280(uint8_t address = BME280_DEFAULT_ADDR);
-        float readAltitude();
+        explicit BME280(uint8_t address = BME280_DEFAULT_ADDR);
+        float readAltitude() override;
         float readPressure();
         float readTemperature();
     private:

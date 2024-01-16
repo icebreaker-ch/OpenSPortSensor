@@ -1,20 +1,23 @@
 #ifndef SENSOR_HUB_H
 #define SENSOR_HUB_H
 #include "global.h"
+#include "config.h"
 #include "Sensor.h"
 
 class SensorHub {
     public:
-        SensorHub(PhysicalId physicalId);
+        explicit SensorHub(PhysicalId physicalId);
         void addSensor(Sensor *pSensor);
         int getPhysicalId();
         Sensor *getNextSensor();
 
     private:
+        SensorHub(SensorHub &) = delete;
+        SensorHub operator=(SensorHub &) = delete;
         PhysicalId physicalId;
         int sensorCount;
         int currentSensorIndex;
-        Sensor **pSensors;
+        Sensor *sensors[MAX_SENSORS];
 };
 
 #endif

@@ -8,10 +8,10 @@
 
 class AltiudeSensor : public Sensor {
     public:
-        AltiudeSensor(IAltitudeSensor *pAltitudeSensor, unsigned int sensorId = ALT_FIRST_ID);
+        explicit AltiudeSensor(IAltitudeSensor *pAltitudeSensor, unsigned int sensorId = ALT_FIRST_ID);
         void setReportInterval(unsigned long reportInterval);
         void setFilter(Filter *pFilter);
-        long getValue();        
+        long getValue() override;        
 
     private:
         static const unsigned int PRECISION = 100; // Precision 2 digits

@@ -9,8 +9,8 @@
 */
 class SimpleSensor : public Sensor {
     public:
-        SimpleSensor(unsigned int sensorId = DIY_FIRST_ID);
-        long getValue();
+        explicit SimpleSensor(unsigned int sensorId = DIY_FIRST_ID);
+        long getValue() override;
 };
 
 #endif

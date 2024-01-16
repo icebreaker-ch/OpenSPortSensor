@@ -17,9 +17,9 @@ void SPortStream::begin(unsigned long speed, byte config) {
     if (isSoftwareStream)
     {
         pinMode(pin, INPUT); // Start with reading mode
-        ((SoftwareSerial *)pStream)->begin(speed);
+        static_cast<SoftwareSerial *>(pStream)->begin(speed);
     } else {
-        ((HardwareSerial *)pStream)->begin(speed, SERIAL_8N1);
+        static_cast<HardwareSerial *>(pStream)->begin(speed, SERIAL_8N1);
     }
 }
 
@@ -27,7 +27,7 @@ void SPortStream::listen()
 {
     if (isSoftwareStream) {
         pinMode(pin, INPUT);
-        ((SoftwareSerial *)pStream)->listen();
+        static_cast<SoftwareSerial *>(pStream)->listen();
     }
 }
 
@@ -35,7 +35,7 @@ void SPortStream::stopListening()
 {
     if (isSoftwareStream) {
       pinMode(pin, OUTPUT);
-      ((SoftwareSerial *)pStream)->stopListening();
+      static_cast<SoftwareSerial *>(pStream)->stopListening();
     }
 }
 
