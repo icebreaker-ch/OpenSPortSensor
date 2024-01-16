@@ -4,9 +4,8 @@
 SensorHub::SensorHub(PhysicalId physicalId) :
     physicalId(physicalId),
     sensorCount(0),
-    currentSensorIndex(0) {
-        for (int index = 0; index < MAX_SENSORS; ++index)
-           sensors[index] = nullptr;
+    currentSensorIndex(0),
+    sensors() {
 }
 
 void SensorHub::addSensor(Sensor *pSensor) {
