@@ -1,5 +1,5 @@
-#ifndef INTERVAL_H
-#define INTERVAL_H
+#ifndef TIMER_H
+#define TIMER_H
 
 class Timer {
     public:
