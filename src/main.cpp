@@ -38,16 +38,18 @@ void setup() {
   // Voltage Sensors
   VoltageSensor *pVoltageSensor = new VoltageSensor(A0, 15000, 3300);
   pVoltageSensor->setFilter(new MeanValueFilter());
-  pVoltageSensor->setReportInterval(500);
+  pVoltageSensor->setReportInterval(new Interval(STANDARD_INTERVAL));
 
   // Vario
+  // Vario: Altitude
   IAltitudeSensor *pBme280 = new BME280();
   AltiudeSensor *pAltSensor = new AltiudeSensor(pBme280);
   pAltSensor->setFilter(new MeanValueFilter());
-  pAltSensor->setReportInterval(500);
+  pAltSensor->setReportInterval(new Interval(STANDARD_INTERVAL));
+  // Vario: Vertical speed
   VerticalSpeedSensor *pVerticalSpeedSensor = new VerticalSpeedSensor(pBme280);
   pVerticalSpeedSensor->setFilter(new MeanValueFilter());
-  pVerticalSpeedSensor->setReportInterval(500);
+  pVerticalSpeedSensor->setReportInterval(STANDARD_INTERVAL);
 
   //hub.addSensor(pSensor1);
   hub.addSensor(pVoltageSensor);

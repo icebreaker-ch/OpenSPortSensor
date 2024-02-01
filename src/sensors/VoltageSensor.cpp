@@ -16,8 +16,8 @@ void VoltageSensor::setFilter(Filter *pFilter) {
     this->pFilter = pFilter;
 }
 
-void VoltageSensor::setReportInterval(unsigned long reportInterval) {
-    pInterval = new Interval(reportInterval);
+void VoltageSensor::setReportInterval(Interval *pInterval) {
+    this->pInterval = pInterval;
 }
 
 long VoltageSensor::getValue() {

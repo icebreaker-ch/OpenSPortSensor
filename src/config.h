@@ -36,6 +36,11 @@
 #define MAX_SENSORS 5
 
 /**
+ * The standard interval in mS to report new values
+*/
+#define STANDARD_INTERVAL 500L
+
+/**
  * Define, what to use as the analog reference voltage.
  * can be one of:
  * DEFAULT: the default analog reference of 5 volts (on 5V Arduino boards) or 3.3 volts (on 3.3V Arduino boards)
