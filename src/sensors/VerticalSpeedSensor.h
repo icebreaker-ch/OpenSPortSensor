@@ -4,12 +4,13 @@
 #include "global.h"
 #include "Sensor.h"
 #include "IAltitudeSensor.h"
+#include "Interval.h"
 #include "Filter.h"
 
 class VerticalSpeedSensor : public Sensor {
     public:
         explicit VerticalSpeedSensor(IAltitudeSensor *pAltitudeSensor, unsigned int sensorId = VARIO_FIRST_ID);
-        void setReportInterval(unsigned long reportInterval);
+        void setReportInterval(Interval *pInterval);
         void setFilter(Filter *pFilter);
         long getValue() override;
 
@@ -17,8 +18,7 @@ class VerticalSpeedSensor : public Sensor {
         static const unsigned int PRECISION = 100; // Precision 2 digits
 
         IAltitudeSensor *pAltitudeSensor;
-        unsigned long reportInterval;
-        unsigned long lastReportMillis;
+        Interval *pInterval;
         float lastReportAltitude;
         float lastReportVerticalSpeed;
         Filter *pFilter;

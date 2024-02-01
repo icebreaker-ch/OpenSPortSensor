@@ -5,6 +5,7 @@ class Interval {
     public:
         explicit Interval(unsigned long milliSeconds);
         bool isElapsed();
+        unsigned long getMillisSinceLast();
 
     private:
         unsigned long lastElapsed;

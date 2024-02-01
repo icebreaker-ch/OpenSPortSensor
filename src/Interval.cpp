@@ -15,3 +15,7 @@ bool Interval::isElapsed() {
     }
     return elapsed;
 }
+
+unsigned long Interval::getMillisSinceLast() {
+    return millis() - lastElapsed;
+}

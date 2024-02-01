@@ -49,7 +49,7 @@ void setup() {
   // Vario: Vertical speed
   VerticalSpeedSensor *pVerticalSpeedSensor = new VerticalSpeedSensor(pBme280);
   pVerticalSpeedSensor->setFilter(new MeanValueFilter());
-  pVerticalSpeedSensor->setReportInterval(STANDARD_INTERVAL);
+  pVerticalSpeedSensor->setReportInterval(new Interval(STANDARD_INTERVAL));
 
   //hub.addSensor(pSensor1);
   hub.addSensor(pVoltageSensor);
