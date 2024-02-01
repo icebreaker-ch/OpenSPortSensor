@@ -3,13 +3,12 @@
 
 class Timer {
     public:
-        explicit Timer(unsigned long milliSeconds);
-        bool isElapsed();
-        unsigned long getMillisSinceLast();
+        Timer();
+        void reset();
+        unsigned long getElapsedTime();
 
     private:
-        unsigned long lastElapsed;
-        unsigned long milliSeconds;
+        unsigned long startMillis;
 };
 
 #endif

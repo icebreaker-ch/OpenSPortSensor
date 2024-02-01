@@ -1,21 +1,14 @@
 #include <Arduino.h>
 #include "Timer.h"
 
-Timer::Timer(unsigned long milliSeconds) :
-    milliSeconds(milliSeconds) {
-        lastElapsed = millis(); // starting now
+Timer::Timer() :
+    startMillis(millis()) {
 }
 
-bool Timer::isElapsed() {
-    unsigned long current = millis();
-    bool elapsed = false;
-    if ((current - lastElapsed) >= milliSeconds) {
-        elapsed = true;
-        lastElapsed = current;
-    }
-    return elapsed;
+void Timer::reset() {
+    startMillis = millis();
 }
 
-unsigned long Timer::getMillisSinceLast() {
-    return millis() - lastElapsed;
+unsigned long Timer::getElapsedTime() {
+    return millis() - startMillis;
 }

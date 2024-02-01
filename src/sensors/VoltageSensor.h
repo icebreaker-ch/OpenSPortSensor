@@ -30,7 +30,7 @@ class VoltageSensor : public Sensor
 {
     public:
         VoltageSensor(uint8_t analogPin, long resistorToVoltage, long resistorToGround, unsigned int sensorId = VFAS_FIRST_ID + 1);
-        void setReportInterval(Timer *pTimer);
+        void setReportInterval(unsigned long reportInterval);
         void setFilter(Filter *pFilter);
         long getValue() override;
 
@@ -42,7 +42,8 @@ class VoltageSensor : public Sensor
         long resistorToGround;
         double lastReportVoltage;
         Filter *pFilter;
-        Timer *pTimer;
+        Timer timer;
+        unsigned long reportInterval;
 };
 
 #endif

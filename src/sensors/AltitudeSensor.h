@@ -10,7 +10,7 @@
 class AltiudeSensor : public Sensor {
     public:
         explicit AltiudeSensor(IAltitudeSensor *pAltitudeSensor, unsigned int sensorId = ALT_FIRST_ID);
-        void setReportInterval(Timer *pTimer);
+        void setReportInterval(unsigned long reportInterval);
         void setFilter(Filter *pFilter);
         long getValue() override;        
 
@@ -19,7 +19,8 @@ class AltiudeSensor : public Sensor {
 
         IAltitudeSensor *pAltitudeSensor;
         Filter *pFilter;
-        Timer *pTimer;
+        Timer timer;
+        unsigned long reportInterval;
         long lastReportValue;
 };
 

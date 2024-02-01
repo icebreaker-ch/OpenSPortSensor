@@ -10,7 +10,7 @@
 class VerticalSpeedSensor : public Sensor {
     public:
         explicit VerticalSpeedSensor(IAltitudeSensor *pAltitudeSensor, unsigned int sensorId = VARIO_FIRST_ID);
-        void setReportInterval(Timer *pTimer);
+        void setReportInterval(unsigned long reportInterval);
         void setFilter(Filter *pFilter);
         long getValue() override;
 
@@ -19,7 +19,8 @@ class VerticalSpeedSensor : public Sensor {
 
         IAltitudeSensor *pAltitudeSensor;
         Filter *pFilter;
-        Timer *pTimer;
+        Timer timer;
+        unsigned long reportInterval;
         float lastReportAltitude;
         float lastReportVerticalSpeed;
 };
