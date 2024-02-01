@@ -1,9 +1,7 @@
 #ifndef LOG_H
 #define LOG_H
 
-#ifndef PLATFORM_NATIVE
 #include <Arduino.h>
-#endif
 
 //#define LOGGING_ON
 
