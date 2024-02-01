@@ -1,12 +1,12 @@
 #include <Arduino.h>
-#include "Interval.h"
+#include "Timer.h"
 
-Interval::Interval(unsigned long milliSeconds) :
+Timer::Timer(unsigned long milliSeconds) :
     milliSeconds(milliSeconds) {
         lastElapsed = millis(); // starting now
 }
 
-bool Interval::isElapsed() {
+bool Timer::isElapsed() {
     unsigned long current = millis();
     bool elapsed = false;
     if ((current - lastElapsed) >= milliSeconds) {
@@ -16,6 +16,6 @@ bool Interval::isElapsed() {
     return elapsed;
 }
 
-unsigned long Interval::getMillisSinceLast() {
+unsigned long Timer::getMillisSinceLast() {
     return millis() - lastElapsed;
 }

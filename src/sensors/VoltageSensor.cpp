@@ -9,15 +9,15 @@ VoltageSensor::VoltageSensor(uint8_t analogPin, long resistorToVoltage, long res
     resistorToGround(resistorToGround),
     lastReportVoltage(0.0),
     pFilter(nullptr),
-    pInterval(nullptr) {
+    pTimer(nullptr) {
 }
 
 void VoltageSensor::setFilter(Filter *pFilter) {
     this->pFilter = pFilter;
 }
 
-void VoltageSensor::setReportInterval(Interval *pInterval) {
-    this->pInterval = pInterval;
+void VoltageSensor::setReportInterval(Timer *pTimer) {
+    this->pTimer = pTimer;
 }
 
 long VoltageSensor::getValue() {
@@ -31,7 +31,7 @@ long VoltageSensor::getValue() {
     }
     
     double reportVoltage;
-    if (pInterval->isElapsed()) {
+    if (pTimer->isElapsed()) {
         reportVoltage = pFilter ? pFilter->getFilteredValue() : inputVoltage;
         if (pFilter) {
             pFilter->reset();

@@ -4,7 +4,7 @@
 #include "config.h"
 #include "Sensor.h"
 #include "Filter.h"
-#include "Interval.h"
+#include "Timer.h"
 
 /**
  * A voltage measurement sensor.
@@ -30,7 +30,7 @@ class VoltageSensor : public Sensor
 {
     public:
         VoltageSensor(uint8_t analogPin, long resistorToVoltage, long resistorToGround, unsigned int sensorId = VFAS_FIRST_ID + 1);
-        void setReportInterval(Interval *pInterval);
+        void setReportInterval(Timer *pTimer);
         void setFilter(Filter *pFilter);
         long getValue() override;
 
@@ -42,7 +42,7 @@ class VoltageSensor : public Sensor
         long resistorToGround;
         double lastReportVoltage;
         Filter *pFilter;
-        Interval *pInterval;
+        Timer *pTimer;
 };
 
 #endif

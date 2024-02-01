@@ -4,13 +4,13 @@
 #include "global.h"
 #include "Sensor.h"
 #include "IAltitudeSensor.h"
-#include "Interval.h"
+#include "Timer.h"
 #include "Filter.h"
 
 class AltiudeSensor : public Sensor {
     public:
         explicit AltiudeSensor(IAltitudeSensor *pAltitudeSensor, unsigned int sensorId = ALT_FIRST_ID);
-        void setReportInterval(Interval *pInterval);
+        void setReportInterval(Timer *pTimer);
         void setFilter(Filter *pFilter);
         long getValue() override;        
 
@@ -18,9 +18,9 @@ class AltiudeSensor : public Sensor {
         static const unsigned int PRECISION = 100; // Precision 2 digits
 
         IAltitudeSensor *pAltitudeSensor;
-        Interval *pInterval;
-        long lastReportValue;
         Filter *pFilter;
+        Timer *pTimer;
+        long lastReportValue;
 };
 
 #endif

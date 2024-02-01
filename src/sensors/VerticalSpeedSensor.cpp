@@ -6,31 +6,29 @@
 VerticalSpeedSensor::VerticalSpeedSensor(IAltitudeSensor *pAltitudeSensor, unsigned int sensorId) :
     Sensor(sensorId),
     pAltitudeSensor(pAltitudeSensor),
-    pInterval(nullptr),
+    pFilter(nullptr),
+    pTimer(nullptr),
     lastReportAltitude(0.0F),
-    lastReportVerticalSpeed(0.0F),
-    pFilter(nullptr) {
+    lastReportVerticalSpeed(0.0F) {
 }
 
-void VerticalSpeedSensor::setReportInterval(Interval *pInterval) {
-    this->pInterval = pInterval;
+void VerticalSpeedSensor::setReportInterval(Timer *pTimer) {
+    this->pTimer = pTimer;
 }
 
-void VerticalSpeedSensor::setFilter(Filter *pFilter)
-{
+void VerticalSpeedSensor::setFilter(Filter *pFilter) {
     this->pFilter = pFilter;
 }
 
-long VerticalSpeedSensor::getValue()
-{
+long VerticalSpeedSensor::getValue() {
     float altitudeRead = pAltitudeSensor->readAltitude();
     if (pFilter) {
         pFilter->addValue(altitudeRead);
     }
 
     float currentVerticalSpeed;
-    unsigned long diffMillis = pInterval->getMillisSinceLast();
-    if (pInterval->isElapsed()) {
+    unsigned long diffMillis = pTimer->getMillisSinceLast();
+    if (pTimer->isElapsed()) {
         float currentAltitude = pFilter ? pFilter->getFilteredValue() : altitudeRead;
         float diffAltitude = currentAltitude - lastReportAltitude;
         currentVerticalSpeed = diffAltitude * MILLISECONDS_PER_SECOND / diffMillis;        

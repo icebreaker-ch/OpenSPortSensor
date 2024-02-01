@@ -1,9 +1,9 @@
 #ifndef INTERVAL_H
 #define INTERVAL_H
 
-class Interval {
+class Timer {
     public:
-        explicit Interval(unsigned long milliSeconds);
+        explicit Timer(unsigned long milliSeconds);
         bool isElapsed();
         unsigned long getMillisSinceLast();
 
