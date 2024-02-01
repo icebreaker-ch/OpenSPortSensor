@@ -4,6 +4,7 @@
 #include "config.h"
 #include "Sensor.h"
 #include "Filter.h"
+#include "Interval.h"
 
 /**
  * A voltage measurement sensor.
@@ -39,10 +40,9 @@ class VoltageSensor : public Sensor
         uint8_t analogPin;
         long resistorToVoltage;
         long resistorToGround;
-        unsigned long reportInterval;
-        unsigned long lastReportMillis;
         double lastReportVoltage;
         Filter *pFilter;
+        Interval *pInterval;
 };
 
 #endif
