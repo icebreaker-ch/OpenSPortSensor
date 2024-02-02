@@ -29,7 +29,9 @@ void setup() {
 #ifdef LOGGING_ON
   Serial.begin(9600); // For debugging output
 #endif
-    
+
+  pinMode(LED_PIN, OUTPUT);
+
   analogReference(ANALOG_REFERENCE);
 
   // Add required sensors here
@@ -76,6 +78,7 @@ void loop() {
 
   switch (state) {
     case stateWaitHeader:
+      digitalWrite(LED_PIN, HIGH);
       if ((pStream->available() && (pStream->readBytes(&byte, 1) == 1) && (byte == START_BYTE))) {
         state = stateWaitPhysicalId;
       }
@@ -88,6 +91,8 @@ void loop() {
       break;
 
     case stateWriteData:
+      digitalWrite(LED_PIN, LOW);
+
       pStream->stopListening();
       Sensor *pSensor = hub.getNextSensor();
       TxData data(pSensor->getSensorId(), pSensor->getValue());
