@@ -22,22 +22,18 @@ void VerticalSpeedSensor::setFilter(Filter *pFilter) {
 
 long VerticalSpeedSensor::getValue() {
     float altitudeRead = pAltitudeSensor->readAltitude();
-    if (pFilter) {
-        pFilter->addValue(altitudeRead);
-    }
+    pFilter->addValue(altitudeRead);
 
     float currentVerticalSpeed;
     unsigned long elapsedTime = timer.getElapsedTime();
     if (elapsedTime >= reportInterval) {
-        float currentAltitude = pFilter ? pFilter->getFilteredValue() : altitudeRead;
+        float currentAltitude = pFilter->getFilteredValue();
         float diffAltitude = currentAltitude - lastReportAltitude;
         currentVerticalSpeed = diffAltitude * MILLISECONDS_PER_SECOND / elapsedTime;        
         LOG("old: ", lastReportAltitude, " current: ", currentAltitude, " diff: ", diffAltitude, " vSpeed: ", currentVerticalSpeed, "\n");
         lastReportAltitude = currentAltitude;
         lastReportVerticalSpeed = currentVerticalSpeed;
-        if (pFilter) {
-            pFilter->reset();
-        }
+        pFilter->reset();
         timer.reset();
     } else {
         currentVerticalSpeed = lastReportVerticalSpeed;

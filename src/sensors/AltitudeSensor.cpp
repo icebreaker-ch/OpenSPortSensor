@@ -19,16 +19,12 @@ void AltiudeSensor::setFilter(Filter *pFilter) {
 
 long AltiudeSensor::getValue() {
     float altitude = pAltitudeSensor->readAltitude();
-    if (pFilter) {
-        pFilter->addValue(altitude);
-    }
+    pFilter->addValue(altitude);
 
     long result;
     if (timer.getElapsedTime() >= reportInterval) {
-        float reportAltitude = pFilter ? pFilter->getFilteredValue() : altitude;
-        if (pFilter) {
-            pFilter->reset();
-        }
+        float reportAltitude = pFilter->getFilteredValue();
+        pFilter->reset();
         result = ((long)(round(PRECISION * reportAltitude)));        
         lastReportValue = result;
         LOG("new altitude: ", reportAltitude, " result: ", result, "\n");

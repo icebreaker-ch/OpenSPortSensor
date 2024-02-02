@@ -1,7 +1,5 @@
 #include "MeanValueFilter.h"
 
-#define MIN(a, b) a <= b ? a : b;
-
 MeanValueFilter::MeanValueFilter() :
     numValues(0),
     sum(0.0F) {

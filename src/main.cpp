@@ -9,6 +9,7 @@
 #include "BME280.h"
 #include "AltitudeSensor.h"
 #include "VerticalSpeedSensor.h"
+#include "NullFilter.h"
 #include "MeanValueFilter.h"
 #include "SPortWriter.h"
 #include "SPortStream.h"

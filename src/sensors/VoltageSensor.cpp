@@ -25,17 +25,12 @@ long VoltageSensor::getValue() {
     double referenceVoltage = ANALOG_REFERENCE_VOLTAGE / 1000.0;
     double pinVoltage = (double)analogReadValue * referenceVoltage / 1024.0;
     double inputVoltage = pinVoltage * (resistorToGround + resistorToVoltage) / resistorToGround;
-
-    if (pFilter) {
-        pFilter->addValue(inputVoltage);
-    }
+    pFilter->addValue(inputVoltage);
     
     double reportVoltage;
     if (timer.getElapsedTime() >= reportInterval) {
         reportVoltage = pFilter ? pFilter->getFilteredValue() : inputVoltage;
-        if (pFilter) {
-            pFilter->reset();
-        }
+        pFilter->reset();
         lastReportVoltage = reportVoltage;
         LOG("report new Voltage: ", reportVoltage, "\n");
         timer.reset();
