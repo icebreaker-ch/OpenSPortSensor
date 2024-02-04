@@ -1,5 +1,5 @@
-#ifndef ALTITUDE_SENSOR_H
-#define ALTITUDE_SENSOR_H
+#ifndef IALTITUDE_SENSOR_H
+#define IALTITUDE_SENSOR_H
 
 class IAltitudeSensor {
     public:

@@ -1,5 +1,5 @@
-#ifndef BME280_VARIO_ALTITUDE_SENSOR_H
-#define BME280_VARIO_ALTITUDE_SENSOR_H
+#ifndef ALTITUDE_SENSOR_H
+#define ALTITUDE_SENSOR_H
 
 #include "global.h"
 #include "Sensor.h"
