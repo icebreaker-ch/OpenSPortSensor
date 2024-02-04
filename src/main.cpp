@@ -9,6 +9,8 @@
 #include "BME280.h"
 #include "AltitudeSensor.h"
 #include "VerticalSpeedSensor.h"
+#include "NeoGPSSensor.h"
+#include "GPSPositionSensor.h"
 #include "NullFilter.h"
 #include "MeanValueFilter.h"
 #include "SPortWriter.h"
@@ -54,10 +56,15 @@ void setup() {
   pVerticalSpeedSensor->setFilter(new MeanValueFilter());
   pVerticalSpeedSensor->setReportInterval(STANDARD_INTERVAL);
 
+  // GPS
+  IGPSSensor *pNeoGPSSensor = new NeoGPSSensor();
+  GPSPositionSensor *pLatitudeLongitudeSensor = new GPSPositionSensor(pNeoGPSSensor);
+
   //hub.addSensor(pSensor1);
   hub.addSensor(pVoltageSensor);
   hub.addSensor(pAltSensor);
   hub.addSensor(pVerticalSpeedSensor);
+  hub.addSensor(pLatitudeLongitudeSensor);
 
   pStream->begin(S_PORT_BAUD, SERIAL_8N1);
   pStream->listen();
