@@ -9,7 +9,7 @@ GPSPositionSensor::GPSPositionSensor(IGPSSensor *pGPSSensor, unsigned int sensor
 
 long GPSPositionSensor::getValue()
 {
-    float value = reportLongitude ? pGPSSensor->getLatitude() : pGPSSensor->getLongitude();
+    double value = reportLongitude ? pGPSSensor->getLongitude() : pGPSSensor->getLatitude();
     unsigned long int reportValue = (unsigned long)(fabs(value) * 600000) & 0x3FFFFFFF;
 
     if (value < 0) {

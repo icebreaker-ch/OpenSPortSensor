@@ -3,9 +3,9 @@
 
 class IGPSSensor {
     public:
-        virtual float getLongitude() = 0;
-        virtual float getLatitude() = 0;
-        virtual float getAltitude() = 0;
+        virtual double getLongitude() = 0;
+        virtual double getLatitude() = 0;
+        virtual double getAltitude() = 0;
 };
 
 #endif

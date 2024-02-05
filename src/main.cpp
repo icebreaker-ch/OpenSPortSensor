@@ -27,6 +27,8 @@
 static SPortWriter *pSPortWriter;
 static SensorHub hub(PHYSICAL_ID);
 
+static NeoGPSSensor *pNeoGPSSensor;
+
 void setup() {
 #ifdef LOGGING_ON
   Serial.begin(9600); // For debugging output
@@ -57,7 +59,7 @@ void setup() {
   pVerticalSpeedSensor->setReportInterval(STANDARD_INTERVAL);
 
   // GPS
-  IGPSSensor *pNeoGPSSensor = new NeoGPSSensor();
+  pNeoGPSSensor = new NeoGPSSensor();
   GPSPositionSensor *pLatitudeLongitudeSensor = new GPSPositionSensor(pNeoGPSSensor);
 
   //hub.addSensor(pSensor1);
@@ -82,6 +84,8 @@ static State state = stateWaitHeader;
 
 void loop() {
   unsigned char byte;
+
+  pNeoGPSSensor->poll();
 
   switch (state) {
     case stateWaitHeader:

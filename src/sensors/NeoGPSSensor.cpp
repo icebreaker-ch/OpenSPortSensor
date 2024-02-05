@@ -1,13 +1,24 @@
 #include "NeoGPSSensor.h"
 
-float NeoGPSSensor::getLongitude() {
-    return 8.98263; // TBD: replace dummy implementation
+NeoGPSSensor::NeoGPSSensor() {
+    Serial1.begin(9600, SERIAL_8N1);
 }
 
-float NeoGPSSensor::getLatitude() {
-     return 47.2242; // TBD: replace dummy implementation
+void NeoGPSSensor::poll() {
+    while (Serial1.available() > 0) {
+        char c = Serial1.read();
+        gps.encode(c);
+     }
 }
 
-float NeoGPSSensor::getAltitude() {
-     return 443.123; // TBD: replace dummy implementation
+double NeoGPSSensor::getLongitude() {
+    return gps.location.isValid() ? gps.location.lng() : 0;
+}
+
+double NeoGPSSensor::getLatitude() {
+    return gps.location.isValid() ? gps.location.lat() : 0;
+}
+
+double NeoGPSSensor::getAltitude() {
+    return gps.altitude.isValid() ?  gps.altitude.meters() : 0;
 }
