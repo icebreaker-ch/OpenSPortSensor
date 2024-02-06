@@ -8,7 +8,7 @@ class SensorHub {
     public:
         explicit SensorHub(PhysicalId physicalId);
         void addSensor(Sensor *pSensor);
-        int getPhysicalId();
+        PhysicalId getPhysicalId();
         Sensor *getNextSensor();
 
     private:

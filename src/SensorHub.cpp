@@ -12,7 +12,7 @@ void SensorHub::addSensor(Sensor *pSensor) {
     sensors[sensorCount++] = pSensor;
 }
 
-int SensorHub::getPhysicalId() {
+PhysicalId SensorHub::getPhysicalId() {
     return physicalId;
 }
 
