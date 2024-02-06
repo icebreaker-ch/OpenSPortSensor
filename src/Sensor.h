@@ -14,7 +14,6 @@ class Sensor {
             return sensorId;
         }
 
-        virtual void poll() {};
         virtual long getValue() = 0;
 
     private:

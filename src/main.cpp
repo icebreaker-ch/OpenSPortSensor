@@ -27,8 +27,6 @@
 static SPortWriter *pSPortWriter;
 static SensorHub hub(PHYSICAL_ID);
 
-static NeoGPSSensor *pNeoGPSSensor;
-
 void setup() {
 #ifdef LOGGING_ON
   Serial.begin(9600); // For debugging output
@@ -59,7 +57,7 @@ void setup() {
   pVerticalSpeedSensor->setReportInterval(STANDARD_INTERVAL);
 
   // GPS
-  pNeoGPSSensor = new NeoGPSSensor();
+  NeoGPSSensor *pNeoGPSSensor = new NeoGPSSensor();
   GPSPositionSensor *pLatitudeLongitudeSensor = new GPSPositionSensor(pNeoGPSSensor);
 
   //hub.addSensor(pSensor1);
