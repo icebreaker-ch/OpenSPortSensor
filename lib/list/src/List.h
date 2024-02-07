@@ -1,13 +1,38 @@
 #ifndef LIST_H
 #define LIST_H
 
-template <class T> class List {
-    template <class E> struct Node {
-        E item;
-        Node<E> *pNext;
-    };
 
+
+template <class T> class List {
     public:
+        template <class E> struct Node {
+            E item;
+            Node<E> *pNext;
+        };
+
+        struct Iterator {
+            Iterator(Node<T> *pNode) :
+                pNode(pNode) { }
+
+            T &operator*() {
+                return pNode->item;
+            }
+
+            Iterator operator++() {
+                return Iterator(pNode->pNext);
+            }
+
+            bool operator==(const Iterator &other) {
+                return pNode == other.pNode;
+            }
+
+            bool operator!=(const Iterator &other) {
+                return pNode != other.pNode;
+            }
+            Node<T> *pNode;
+        };
+
+
         List<T>() :
             pHead(nullptr) {
         }
@@ -19,10 +44,14 @@ template <class T> class List {
             pHead = pNode;
         }
 
-        Node<T> *getHead() {
-            return pHead;
+        Iterator begin() {
+            return Iterator(pHead);
         }
-        
+
+        Iterator end() {
+            return Iterator(nullptr);
+        }
+
     private:
         Node<T> *pHead;
 };

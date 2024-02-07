@@ -9,19 +9,53 @@ void tearDown(void) {
 
 void test_create_list_is_empty() {
     List<int> *pList = new List<int>();
-    TEST_ASSERT_NULL(pList->getHead());
+    TEST_ASSERT_TRUE(pList->begin() == pList->end());
 }
 
-void test_insert_element_non_empty() {
+void test_insert_first_element_not_empty() {
     List<int> *pList = new List<int>();
     pList->add(42);
-    TEST_ASSERT_NOT_NULL(pList->getHead());
+    TEST_ASSERT_FALSE(pList->begin() == pList->end());
+}
+
+void test_iterator_reference_element() {
+    List<int> *pList = new List<int>();
+    pList->add(42);
+    List<int>::Iterator it = pList->begin();
+    TEST_ASSERT_EQUAL(42, *it);
+}
+
+void test_iterator_next_element() {
+    List<int> *pList = new List<int>();
+    pList->add(42);
+    pList->add(43);
+    List<int>::Iterator it = pList->begin();
+    ++it;
+    TEST_ASSERT_EQUAL(43, *it);
+}
+
+void test_iterator_iterate() {
+    int ref[3] = {11, 22, 33};
+
+    List<int> *pList = new List<int>();
+    pList->add(ref[0]);
+    pList->add(ref[1]);
+    pList->add(ref[2]);
+
+    int arr[3];
+    int index = 0;
+    for (List<int>::Iterator it = pList->begin(); it != pList->end(); ++it) {
+        arr[index++] = *it;
+    }
+    TEST_ASSERT_EQUAL_INT16_ARRAY(ref, arr, 3);
 }
 
 int main(int argc, char **argv) {
     UNITY_BEGIN();
     RUN_TEST(test_create_list_is_empty);
-    RUN_TEST(test_insert_element_non_empty);
+    RUN_TEST(test_insert_first_element_not_empty);
+    RUN_TEST(test_iterator_reference_element);
+    RUN_TEST(test_iterator_next_element);
     UNITY_END();
     return 0;
 }
