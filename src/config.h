@@ -31,11 +31,6 @@
 #define PHYSICAL_ID PHYSICAL_ID11
 
 /**
- * Maximum number of sensors for the SensorHub
-*/
-#define MAX_SENSORS 5
-
-/**
  * The standard interval in mS to report new values
 */
 #define STANDARD_INTERVAL 500L

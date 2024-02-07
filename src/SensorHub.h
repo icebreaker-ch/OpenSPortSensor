@@ -1,5 +1,6 @@
 #ifndef SENSOR_HUB_H
 #define SENSOR_HUB_H
+#include <List.h>
 #include "global.h"
 #include "config.h"
 #include "Sensor.h"
@@ -15,9 +16,9 @@ class SensorHub {
         SensorHub(SensorHub &) = delete;
         SensorHub operator=(SensorHub &) = delete;
         PhysicalId physicalId;
-        int sensorCount;
         int currentSensorIndex;
-        Sensor *sensors[MAX_SENSORS];
+        List<Sensor *>sensors;
+        List<Sensor *>::Iterator iterator;
 };
 
 #endif

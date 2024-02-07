@@ -31,16 +31,16 @@ void test_iterator_next_element() {
     pList->add(43);
     List<int>::Iterator it = pList->begin();
     ++it;
-    TEST_ASSERT_EQUAL(43, *it);
+    TEST_ASSERT_EQUAL(42, *it);
 }
 
 void test_iterator_iterate() {
     int ref[3] = {11, 22, 33};
 
     List<int> *pList = new List<int>();
-    pList->add(ref[0]);
-    pList->add(ref[1]);
     pList->add(ref[2]);
+    pList->add(ref[1]);
+    pList->add(ref[0]);
 
     int arr[3];
     int index = 0;
@@ -56,6 +56,7 @@ int main(int argc, char **argv) {
     RUN_TEST(test_insert_first_element_not_empty);
     RUN_TEST(test_iterator_reference_element);
     RUN_TEST(test_iterator_next_element);
+    RUN_TEST(test_iterator_iterate);
     UNITY_END();
     return 0;
 }

@@ -3,13 +3,12 @@
 
 SensorHub::SensorHub(PhysicalId physicalId) :
     physicalId(physicalId),
-    sensorCount(0),
     currentSensorIndex(0),
-    sensors() {
+    iterator(sensors.begin()) {
 }
 
 void SensorHub::addSensor(Sensor *pSensor) {
-    sensors[sensorCount++] = pSensor;
+    sensors.add(pSensor);
 }
 
 PhysicalId SensorHub::getPhysicalId() {
@@ -17,9 +16,10 @@ PhysicalId SensorHub::getPhysicalId() {
 }
 
 Sensor *SensorHub::getNextSensor() {
-    if (sensorCount > 0) {
-        currentSensorIndex = (currentSensorIndex + 1) % sensorCount;
-        return sensors[currentSensorIndex];
-    }
-    return nullptr;
+    Sensor *pSensor;
+    if (iterator == sensors.end())
+        iterator = sensors.begin();
+    pSensor = *iterator;
+    ++iterator;
+    return pSensor;
 }

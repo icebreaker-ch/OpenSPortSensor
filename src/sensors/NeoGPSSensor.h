@@ -4,9 +4,9 @@
 #include <Arduino.h>
 #include <TinyGPS++.h>
 #include "IGPSSensor.h"
-#include "IPolling.h"
+#include "IPollingDevice.h"
 
-class NeoGPSSensor : public IGPSSensor, IPolling {
+class NeoGPSSensor : public IGPSSensor, public IPollingDevice {
     public:
         NeoGPSSensor();
         void poll() override;

@@ -1,5 +1,6 @@
 #include <Arduino.h>
 #include <TxData.h>
+#include <List.h>
 #include "log.h"
 #include "config.h"
 #include "SensorHub.h"
@@ -26,6 +27,7 @@
 
 static SPortWriter *pSPortWriter;
 static SensorHub hub(PHYSICAL_ID);
+static List<IPollingDevice *> pollingDevices;
 
 void setup() {
 #ifdef LOGGING_ON
@@ -57,7 +59,9 @@ void setup() {
   pVerticalSpeedSensor->setReportInterval(STANDARD_INTERVAL);
 
   // GPS
+  //NeoGPSSensor *pNeoGPSSensor = new NeoGPSSensor();
   NeoGPSSensor *pNeoGPSSensor = new NeoGPSSensor();
+  pollingDevices.add(pNeoGPSSensor); // register as polling device for feeding GPS data
   GPSPositionSensor *pLatitudeLongitudeSensor = new GPSPositionSensor(pNeoGPSSensor);
 
   //hub.addSensor(pSensor1);
@@ -83,7 +87,10 @@ static State state = stateWaitHeader;
 void loop() {
   unsigned char byte;
 
-  pNeoGPSSensor->poll();
+  // Hanlde polling devices in every loop
+  for (List<IPollingDevice *>::Iterator it = pollingDevices.begin(); it != pollingDevices.end(); ++it) {
+    (*it)->poll();
+  }
 
   switch (state) {
     case stateWaitHeader:
@@ -103,7 +110,7 @@ void loop() {
       digitalWrite(LED_PIN, LOW);
 
       pStream->stopListening();
-      Sensor *pSensor = hub.getNextSensor();
+      Sensor *pSensor = hub.getNextSensor();      
       TxData data(pSensor->getSensorId(), pSensor->getValue());
 
       unsigned char bytes[TxData::LEN];

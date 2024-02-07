@@ -1,8 +1,6 @@
 #ifndef LIST_H
 #define LIST_H
 
-
-
 template <class T> class List {
     public:
         template <class E> struct Node {
@@ -18,8 +16,9 @@ template <class T> class List {
                 return pNode->item;
             }
 
-            Iterator operator++() {
-                return Iterator(pNode->pNext);
+            Iterator &operator++() {    
+                pNode = pNode->pNext;
+                return *this;            
             }
 
             bool operator==(const Iterator &other) {
