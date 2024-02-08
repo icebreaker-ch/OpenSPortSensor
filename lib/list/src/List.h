@@ -1,6 +1,12 @@
 #ifndef LIST_H
 #define LIST_H
 
+/**
+ * A very minimal List containr class with an iterator.
+ * Adding items at the head of the list (prepend) for simplicity, so
+ * they are iterated in reverse order!
+ * 
+*/
 template <class T> class List {
     public:
         template <class E> struct Node {
