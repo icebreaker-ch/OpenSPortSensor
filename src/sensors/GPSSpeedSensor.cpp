@@ -8,5 +8,5 @@ GPSSpeedSensor::GPSSpeedSensor(IGPSSensor *pGPSSensor, unsigned int sensorId) :
 
 long GPSSpeedSensor::getValue()
 {
-    return static_cast<long>(pGPSSensor->getSpeed() * PRECICION + 0.5);
+    return static_cast<long>(round(pGPSSensor->getSpeed() * PRECICION));
 }

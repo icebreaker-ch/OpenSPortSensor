@@ -11,6 +11,7 @@
 #include "AltitudeSensor.h"
 #include "VerticalSpeedSensor.h"
 #include "NeoGPSSensor.h"
+#include "GPSCourseSensor.h"
 #include "GPSPositionSensor.h"
 #include "GPSAltitudeSensor.h"
 #include "GPSSpeedSensor.h"
@@ -67,6 +68,7 @@ void setup() {
   GPSPositionSensor *pLatitudeLongitudeSensor = new GPSPositionSensor(pNeoGPSSensor);
   GPSAltitudeSensor *pGPSAltitudeSensor = new GPSAltitudeSensor(pNeoGPSSensor);
   GPSSpeedSensor *pGPSSpeedSensor = new GPSSpeedSensor(pNeoGPSSensor);
+  GPSCourseSensor *pGPSCourseSensor = new GPSCourseSensor(pNeoGPSSensor);
 
   //hub.addSensor(pSensor1);
   hub.addSensor(pVoltageSensor);
@@ -75,6 +77,7 @@ void setup() {
   hub.addSensor(pLatitudeLongitudeSensor);
   hub.addSensor(pGPSAltitudeSensor);
   hub.addSensor(pGPSSpeedSensor);
+  hub.addSensor(pGPSCourseSensor);
 
   pStream->begin(S_PORT_BAUD, SERIAL_8N1);
   pStream->listen();

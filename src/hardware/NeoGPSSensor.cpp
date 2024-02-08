@@ -27,3 +27,7 @@ double NeoGPSSensor::getAltitude() {
 double NeoGPSSensor::getSpeed() {
     return gps.speed.isValid() && gps.speed.age() < SENSOR_TIMEOUT ? gps.speed.kmph() : 0;
 }
+
+double NeoGPSSensor::getCourse() {
+    return gps.course.isValid() && gps.course.age() < SENSOR_TIMEOUT ? gps.course.deg() : 0;
+}
