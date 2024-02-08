@@ -10,10 +10,14 @@ class NeoGPSSensor : public IGPSSensor, public IPollingDevice {
     public:
         NeoGPSSensor();
         void poll() override;
+        void setTimeout(unsigned long timeout);
         double getLongitude() override;
         double getLatitude() override;
         double getAltitude() override;
+        double getSpeed() override;
     private:
+        static const unsigned int DEFAULT_TIMEOUT = 10000U;
+        unsigned long timeout;
         TinyGPSPlus gps;
 };
 

@@ -12,6 +12,8 @@
 #include "VerticalSpeedSensor.h"
 #include "NeoGPSSensor.h"
 #include "GPSPositionSensor.h"
+#include "GPSAltitudeSensor.h"
+#include "GPSSpeedSensor.h"
 #include "NullFilter.h"
 #include "MeanValueFilter.h"
 #include "SPortWriter.h"
@@ -63,12 +65,16 @@ void setup() {
   NeoGPSSensor *pNeoGPSSensor = new NeoGPSSensor();
   pollingDevices.add(pNeoGPSSensor); // register as polling device for feeding GPS data
   GPSPositionSensor *pLatitudeLongitudeSensor = new GPSPositionSensor(pNeoGPSSensor);
+  GPSAltitudeSensor *pGPSAltitudeSensor = new GPSAltitudeSensor(pNeoGPSSensor);
+  GPSSpeedSensor *pGPSSpeedSensor = new GPSSpeedSensor(pNeoGPSSensor);
 
   //hub.addSensor(pSensor1);
   hub.addSensor(pVoltageSensor);
   hub.addSensor(pAltSensor);
   hub.addSensor(pVerticalSpeedSensor);
   hub.addSensor(pLatitudeLongitudeSensor);
+  hub.addSensor(pGPSAltitudeSensor);
+  hub.addSensor(pGPSSpeedSensor);
 
   pStream->begin(S_PORT_BAUD, SERIAL_8N1);
   pStream->listen();

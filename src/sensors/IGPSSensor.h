@@ -6,6 +6,7 @@ class IGPSSensor {
         virtual double getLongitude() = 0;
         virtual double getLatitude() = 0;
         virtual double getAltitude() = 0;
+        virtual double getSpeed() = 0;
 };
 
 #endif

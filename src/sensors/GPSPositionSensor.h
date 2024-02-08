@@ -11,7 +11,7 @@
 class GPSPositionSensor : public Sensor {
     public:
         explicit GPSPositionSensor(IGPSSensor *pGPSSensor, unsigned int sensorId = GPS_LONG_LATI_FIRST_ID + 1);
-        long getValue();
+        long getValue() override;
 
     private:
         bool reportLongitude;
