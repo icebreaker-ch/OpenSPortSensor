@@ -15,6 +15,7 @@ class NeoGPSSensor : public IGPSSensor, public IPollingDevice {
         double getAltitude() override;
         double getSpeed() override;
         double getCourse() override;
+
     private:
         TinyGPSPlus gps;
 };

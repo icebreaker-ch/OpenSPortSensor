@@ -7,7 +7,7 @@
 
 /**
  * This sensor reports GPS Speed.
-*/
+ */
 class GPSSpeedSensor : public Sensor {
     public:
         explicit GPSSpeedSensor(IGPSSensor *pGPSSensor, unsigned int sensorId = GPS_SPEED_FIRST_ID + 1);

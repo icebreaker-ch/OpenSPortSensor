@@ -7,7 +7,7 @@
 
 /**
  * This sensor reports GPS Altitude.
-*/
+ */
 class GPSAltitudeSensor : public Sensor {
     public:
         explicit GPSAltitudeSensor(IGPSSensor *pGPSSensor, unsigned int sensorId = GPS_ALT_FIRST_ID + 1);

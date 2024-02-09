@@ -8,7 +8,7 @@ void setUp(void) {
 }
 
 void tearDown(void) {
-    delete(pMeanValueFilter);
+    delete (pMeanValueFilter);
 }
 
 static void test_mean_value_is_zero_at_start() {

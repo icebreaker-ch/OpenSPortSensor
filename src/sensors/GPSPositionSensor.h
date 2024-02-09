@@ -7,7 +7,7 @@
 
 /**
  * This sensor reports GPS Latitude and Longitude values alternating for each request.
-*/
+ */
 class GPSPositionSensor : public Sensor {
     public:
         explicit GPSPositionSensor(IGPSSensor *pGPSSensor, unsigned int sensorId = GPS_LONG_LATI_FIRST_ID + 1);

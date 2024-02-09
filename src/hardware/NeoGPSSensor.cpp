@@ -9,10 +9,10 @@ void NeoGPSSensor::poll() {
     while (Serial1.available() > 0) {
         char c = Serial1.read();
         gps.encode(c);
-     }
+    }
 }
 
-double NeoGPSSensor::getLongitude() {    
+double NeoGPSSensor::getLongitude() {
     return gps.location.isValid() && gps.location.age() < SENSOR_TIMEOUT ? gps.location.lng() : 0;
 }
 
@@ -21,7 +21,7 @@ double NeoGPSSensor::getLatitude() {
 }
 
 double NeoGPSSensor::getAltitude() {
-    return gps.altitude.isValid() && gps.altitude.age() < SENSOR_TIMEOUT ?  gps.altitude.meters() : 0;
+    return gps.altitude.isValid() && gps.altitude.age() < SENSOR_TIMEOUT ? gps.altitude.meters() : 0;
 }
 
 double NeoGPSSensor::getSpeed() {

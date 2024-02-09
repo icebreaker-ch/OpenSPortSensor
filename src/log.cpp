@@ -4,8 +4,8 @@
 
 /**
  * Teminates recursive logging after the last argumnt
-*/
-void printLog () {
+ */
+void printLog() {
 }
 
 #endif

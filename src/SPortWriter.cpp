@@ -1,8 +1,7 @@
 #include "SPortWriter.h"
 
 SPortWriter::SPortWriter(Stream *pStream) :
-    pStream(pStream)
-{
+    pStream(pStream) {
 }
 
 void SPortWriter::write(unsigned char byte) {

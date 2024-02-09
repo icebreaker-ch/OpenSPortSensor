@@ -3,19 +3,17 @@
 SPortStream::SPortStream(Stream *pStream) :
     isSoftwareStream(false),
     pin(0),
-    pStream(pStream)
-{
+    pStream(pStream) {
 }
 
 SPortStream::SPortStream(int pin) :
     isSoftwareStream(true),
     pin(pin) {
-        pStream = new SoftwareSerial(pin, pin, true);
+    pStream = new SoftwareSerial(pin, pin, true);
 }
 
 void SPortStream::begin(unsigned long speed, byte config) {
-    if (isSoftwareStream)
-    {
+    if (isSoftwareStream) {
         pinMode(pin, INPUT); // Start with reading mode
         static_cast<SoftwareSerial *>(pStream)->begin(speed);
     } else {
@@ -23,38 +21,32 @@ void SPortStream::begin(unsigned long speed, byte config) {
     }
 }
 
-void SPortStream::listen()
-{
+void SPortStream::listen() {
     if (isSoftwareStream) {
         pinMode(pin, INPUT);
         static_cast<SoftwareSerial *>(pStream)->listen();
     }
 }
 
-void SPortStream::stopListening()
-{
+void SPortStream::stopListening() {
     if (isSoftwareStream) {
-      pinMode(pin, OUTPUT);
-      static_cast<SoftwareSerial *>(pStream)->stopListening();
+        pinMode(pin, OUTPUT);
+        static_cast<SoftwareSerial *>(pStream)->stopListening();
     }
 }
 
-int SPortStream::available()
-{
+int SPortStream::available() {
     return pStream->available();
 }
 
-int SPortStream::read()
-{
+int SPortStream::read() {
     return pStream->read();
 }
 
-size_t SPortStream::write(uint8_t c)
-{
+size_t SPortStream::write(uint8_t c) {
     return pStream->write(c);
 }
 
-int SPortStream::peek()
-{
+int SPortStream::peek() {
     return pStream->peek();
 }

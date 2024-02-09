@@ -17,7 +17,7 @@ class SensorHub {
         SensorHub operator=(SensorHub &) = delete;
         PhysicalId physicalId;
         int currentSensorIndex;
-        List<Sensor *>sensors;
+        List<Sensor *> sensors;
         List<Sensor *>::Iterator iterator;
 };
 

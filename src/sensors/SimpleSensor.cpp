@@ -2,8 +2,7 @@
 #include "SimpleSensor.h"
 
 SimpleSensor::SimpleSensor(unsigned int sensorId) :
-    Sensor(sensorId)
-{
+    Sensor(sensorId) {
 }
 
 long SimpleSensor::getValue() {

@@ -7,10 +7,10 @@
 
 /**
  * This sensor reports GPS Course.
-*/
+ */
 class GPSCourseSensor : public Sensor {
     public:
-        explicit GPSCourseSensor(IGPSSensor *pGPSSensor, unsigned int sensorId = GPS_COURS_FIRST_ID+ 1);
+        explicit GPSCourseSensor(IGPSSensor *pGPSSensor, unsigned int sensorId = GPS_COURS_FIRST_ID + 1);
         long getValue() override;
 
     private:

@@ -3,16 +3,16 @@
 
 #include <Arduino.h>
 
-//#define LOGGING_ON
+// #define LOGGING_ON
 
 #ifdef LOGGING_ON
-    extern void printLog();
+extern void printLog();
 
-    template<class T, class... Types>
-    void printLog (T firstArg, Types... args) {
-        Serial.print(firstArg); // printing first argument
-        printLog(args...); // printing the rest of the arguments recursive
-    }
+template <class T, class... Types>
+void printLog(T firstArg, Types... args) {
+    Serial.print(firstArg); // printing first argument
+    printLog(args...);      // printing the rest of the arguments recursive
+}
 
     #define LOG(...) printLog(__FILE__, ":", __LINE__, ": ", __VA_ARGS__)
 #else

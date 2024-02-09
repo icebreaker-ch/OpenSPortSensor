@@ -3,7 +3,7 @@
 
 /**
  * Base class for all Sensors.
-*/
+ */
 class Sensor {
     public:
         Sensor(unsigned int sensorId) :

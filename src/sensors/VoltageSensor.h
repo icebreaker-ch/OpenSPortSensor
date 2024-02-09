@@ -10,7 +10,7 @@
  * A voltage measurement sensor.
  * You have to make sure to reduce the input voltage to the range [0..ANALOG_VOLTAGE_REFERENCE]
  * by using a voltage divider:
- * 
+ *
  * Vin o-----.
  *           |
  *          .-.
@@ -24,10 +24,9 @@
  *          `-'
  *           |
  * Gnd o-----+--------o Gnd
- * 
-*/ 
-class VoltageSensor : public Sensor
-{
+ *
+ */
+class VoltageSensor : public Sensor {
     public:
         VoltageSensor(uint8_t analogPin, long resistorToVoltage, long resistorToGround, unsigned int sensorId = VFAS_FIRST_ID + 1);
         void setReportInterval(unsigned long reportInterval);

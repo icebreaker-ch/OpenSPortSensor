@@ -6,7 +6,6 @@ GPSAltitudeSensor::GPSAltitudeSensor(IGPSSensor *pGPSSensor, unsigned int sensor
     pGPSSensor(pGPSSensor) {
 }
 
-long GPSAltitudeSensor::getValue()
-{
+long GPSAltitudeSensor::getValue() {
     return static_cast<long>(round(pGPSSensor->getAltitude() * PRECICION));
 }

@@ -7,8 +7,9 @@ class SPortWriter {
     public:
         explicit SPortWriter(Stream *pStream);
         void write(unsigned char byte);
+
     private:
-        Stream *pStream;    
+        Stream *pStream;
 };
 
 #endif

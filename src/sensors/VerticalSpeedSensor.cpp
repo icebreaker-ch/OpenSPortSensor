@@ -29,7 +29,7 @@ long VerticalSpeedSensor::getValue() {
     if (elapsedTime >= reportInterval) {
         float currentAltitude = pFilter->getFilteredValue();
         float diffAltitude = currentAltitude - lastReportAltitude;
-        currentVerticalSpeed = diffAltitude * MILLISECONDS_PER_SECOND / elapsedTime;        
+        currentVerticalSpeed = diffAltitude * MILLISECONDS_PER_SECOND / elapsedTime;
         LOG("old: ", lastReportAltitude, " current: ", currentAltitude, " diff: ", diffAltitude, " vSpeed: ", currentVerticalSpeed, "\n");
         lastReportAltitude = currentAltitude;
         lastReportVerticalSpeed = currentVerticalSpeed;

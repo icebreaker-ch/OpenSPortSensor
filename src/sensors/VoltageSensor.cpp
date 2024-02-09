@@ -26,7 +26,7 @@ long VoltageSensor::getValue() {
     double pinVoltage = (double)analogReadValue * referenceVoltage / 1024.0;
     double inputVoltage = pinVoltage * (resistorToGround + resistorToVoltage) / resistorToGround;
     pFilter->addValue(inputVoltage);
-    
+
     double reportVoltage;
     if (timer.getElapsedTime() >= reportInterval) {
         reportVoltage = pFilter ? pFilter->getFilteredValue() : inputVoltage;
