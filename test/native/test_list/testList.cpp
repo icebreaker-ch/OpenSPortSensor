@@ -50,6 +50,23 @@ void test_iterator_iterate() {
     TEST_ASSERT_EQUAL_INT16_ARRAY(ref, arr, 3);
 }
 
+void test_iterator_iterate_postfix() {
+    int ref[3] = {11, 22, 33};
+
+    List<int> *pList = new List<int>();
+    pList->add(ref[2]);
+    pList->add(ref[1]);
+    pList->add(ref[0]);
+
+    int arr[3];
+    int index = 0;
+    List<int>::Iterator it = pList->begin();
+    while (it != pList->end()) {
+        arr[index++] = *it++;
+    }
+    TEST_ASSERT_EQUAL_INT16_ARRAY(ref, arr, 3);
+}
+
 int main(int argc, char **argv) {
     UNITY_BEGIN();
     RUN_TEST(test_create_list_is_empty);
@@ -57,6 +74,7 @@ int main(int argc, char **argv) {
     RUN_TEST(test_iterator_reference_element);
     RUN_TEST(test_iterator_next_element);
     RUN_TEST(test_iterator_iterate);
+    RUN_TEST(test_iterator_iterate_postfix);
     UNITY_END();
     return 0;
 }

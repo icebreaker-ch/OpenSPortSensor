@@ -27,6 +27,12 @@ template <class T> class List {
                 return *this;            
             }
 
+            Iterator operator++(int) {
+                Iterator iterator = Iterator(pNode);
+                pNode = pNode->pNext;
+                return iterator;            
+            }
+
             bool operator==(const Iterator &other) {
                 return pNode == other.pNode;
             }
