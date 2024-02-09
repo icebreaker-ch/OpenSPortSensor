@@ -13,6 +13,8 @@ class NeoGPSSensor : public IGPSSensor, public IPollingDevice {
         double getLongitude() override;
         double getLatitude() override;
         double getAltitude() override;
+        double getSpeed() override;
+        double getCourse() override;
     private:
         TinyGPSPlus gps;
 };

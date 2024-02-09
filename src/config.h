@@ -25,6 +25,11 @@
 #define S_PORT_BAUD 57600
 
 /**
+ * Number of milliseconds for sensor timeout
+*/
+#define SENSOR_TIMEOUT 10000
+
+/**
  * Define the Physical ID of the Hub
  * Choose one of the defined IDs which is not used by another sensor in your system.
 */

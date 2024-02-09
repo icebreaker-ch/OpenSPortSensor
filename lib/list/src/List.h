@@ -15,7 +15,7 @@ template <class T> class List {
         };
 
         struct Iterator {
-            Iterator(Node<T> *pNode) :
+            explicit Iterator(Node<T> *pNode) :
                 pNode(pNode) { }
 
             T &operator*() {
