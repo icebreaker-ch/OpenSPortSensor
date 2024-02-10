@@ -1,7 +1,7 @@
-#include <SoftwareSerial.h>
 #include "SPortSoftwareStream.h"
 
 #ifndef USE_HARDWARE_SERIAL
+#include <SoftwareSerial.h>
 
 SPortSoftwareStream::SPortSoftwareStream(int pin) :
     pin(pin) {
