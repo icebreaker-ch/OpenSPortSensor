@@ -17,68 +17,79 @@
 #include "GPSSpeedSensor.h"
 #include "NullFilter.h"
 #include "MeanValueFilter.h"
+#include "SPortHardwareStream.h"
+#include "SPortSoftwareStream.h"
 #include "SPortWriter.h"
-#include "SPortStream.h"
 
 #define START_BYTE 0x7E
 
 #ifdef USE_HARDWARE_SERIAL
-static SPortStream *pStream = new SPortStream(&HARDWARE_SERIAL_STREAM);
+static ISPortStream *pStream = new SPortHardwareStream(&HARDWARE_SERIAL_STREAM);
 #else
-static SPortStream *pStream = new SPortStream(SOFTWARE_SERIAL_PIN);
+static ISPortStream *pStream = new SPortSoftwareStream(SOFTWARE_SERIAL_PIN);
 #endif
 
 static SPortWriter *pSPortWriter;
 static SensorHub hub(PHYSICAL_ID);
 static List<IPollingDevice *> pollingDevices;
 
-void setup() {
-#ifdef LOGGING_ON
-    Serial.begin(9600); // For debugging output
-#endif
-
-    pinMode(LED_PIN, OUTPUT);
-
-    analogReference(ANALOG_REFERENCE);
-
+static void addSensors() {
     // Add required sensors here
-    // Test sensors
-    // SimpleSensor *pSensor1 = new SimpleSensor(0x5200);
+    // Test Sensor
+    // ===========
+    // SimpleSensor *pTestSensor = new SimpleSensor(0x5200);
+    // hub.addSensor(pTestSensor);
 
-    // Voltage Sensors
+    // Voltage Sensor
+    // ==============
     VoltageSensor *pVoltageSensor = new VoltageSensor(A0, 15000, 3300);
     pVoltageSensor->setFilter(new MeanValueFilter());
     pVoltageSensor->setReportInterval(STANDARD_INTERVAL);
+    hub.addSensor(pVoltageSensor);
 
     // Vario
+    // =====
     // Vario: Altitude
     IAltitudeSensor *pBme280 = new BME280();
     AltiudeSensor *pAltSensor = new AltiudeSensor(pBme280);
     pAltSensor->setFilter(new MeanValueFilter());
     pAltSensor->setReportInterval(STANDARD_INTERVAL);
+    hub.addSensor(pAltSensor);
     // Vario: Vertical speed
     VerticalSpeedSensor *pVerticalSpeedSensor = new VerticalSpeedSensor(pBme280);
     pVerticalSpeedSensor->setFilter(new MeanValueFilter());
     pVerticalSpeedSensor->setReportInterval(STANDARD_INTERVAL);
+    hub.addSensor(pVerticalSpeedSensor);
 
     // GPS
-    // NeoGPSSensor *pNeoGPSSensor = new NeoGPSSensor();
     NeoGPSSensor *pNeoGPSSensor = new NeoGPSSensor();
     pollingDevices.add(pNeoGPSSensor); // register as polling device for feeding GPS data
+    // GPS: Position Sensor
     GPSPositionSensor *pLatitudeLongitudeSensor = new GPSPositionSensor(pNeoGPSSensor);
-    GPSAltitudeSensor *pGPSAltitudeSensor = new GPSAltitudeSensor(pNeoGPSSensor);
-    GPSSpeedSensor *pGPSSpeedSensor = new GPSSpeedSensor(pNeoGPSSensor);
-    GPSCourseSensor *pGPSCourseSensor = new GPSCourseSensor(pNeoGPSSensor);
-
-    // hub.addSensor(pSensor1);
-    hub.addSensor(pVoltageSensor);
-    hub.addSensor(pAltSensor);
-    hub.addSensor(pVerticalSpeedSensor);
     hub.addSensor(pLatitudeLongitudeSensor);
+    
+    // GPS: Altitude Sensor
+    GPSAltitudeSensor *pGPSAltitudeSensor = new GPSAltitudeSensor(pNeoGPSSensor);
     hub.addSensor(pGPSAltitudeSensor);
-    hub.addSensor(pGPSSpeedSensor);
-    hub.addSensor(pGPSCourseSensor);
 
+    // GPS: Speed Sensor
+    GPSSpeedSensor *pGPSSpeedSensor = new GPSSpeedSensor(pNeoGPSSensor);
+    hub.addSensor(pGPSSpeedSensor);
+
+    // GPS: Course Sensor
+    GPSCourseSensor *pGPSCourseSensor = new GPSCourseSensor(pNeoGPSSensor);
+    hub.addSensor(pGPSCourseSensor);
+}
+
+void setup() {
+#ifdef LOGGING_ON
+    Serial.begin(9600); // For debugging output
+#endif    
+
+    pinMode(LED_PIN, OUTPUT);
+    analogReference(ANALOG_REFERENCE);
+    addSensors();
+    
     pStream->begin(S_PORT_BAUD, SERIAL_8N1);
     pStream->listen();
 
