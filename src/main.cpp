@@ -7,6 +7,7 @@
 #include "Sensor.h"
 #include "SimpleSensor.h"
 #include "VoltageSensor.h"
+#include "CurrentSensor.h"
 #include "BME280.h"
 #include "AltitudeSensor.h"
 #include "VerticalSpeedSensor.h"
@@ -46,6 +47,13 @@ static void addSensors() {
     pVoltageSensor->setFilter(new MeanValueFilter());
     pVoltageSensor->setReportInterval(STANDARD_INTERVAL);
     hub.addSensor(pVoltageSensor);
+
+    // Current Sensor
+    // ==============
+    CurrentSensor *pCurrentSensor = new CurrentSensor(A2, 1280.0, 25.0);
+    pCurrentSensor->setFilter(new MeanValueFilter());
+    pCurrentSensor->setReportInterval(STANDARD_INTERVAL);
+    hub.addSensor(pCurrentSensor);
 
     // Vario
     // =====
