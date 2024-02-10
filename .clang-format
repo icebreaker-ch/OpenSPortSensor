@@ -13,3 +13,4 @@ IndentPPDirectives: BeforeHash
 NamespaceIndentation: All
 FixNamespaceComments: false
 SortIncludes: false 
+AlwaysBreakTemplateDeclarations: No

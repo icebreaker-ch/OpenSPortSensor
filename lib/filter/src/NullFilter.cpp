@@ -1,11 +1,10 @@
 #include "NullFilter.h"
 
 NullFilter::NullFilter() :
-   value(0.0F) {
+    value(0.0F) {
 }
 
-void NullFilter::reset()
-{
+void NullFilter::reset() {
     value = 0.0F;
 }
 

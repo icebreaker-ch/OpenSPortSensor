@@ -5,8 +5,7 @@ MeanValueFilter::MeanValueFilter() :
     sum(0.0F) {
 }
 
-void MeanValueFilter::reset()
-{
+void MeanValueFilter::reset() {
     numValues = 0;
     sum = 0.0F;
 }
