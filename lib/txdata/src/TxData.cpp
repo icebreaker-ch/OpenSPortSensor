@@ -1,5 +1,7 @@
 #include "TxData.h"
 
+unsigned char TxData::NO_DATA[TxData::LEN] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xFF };
+
 TxData::TxData(short sensorId, long value, unsigned char type) :
     sensorId(sensorId),
     value(value),

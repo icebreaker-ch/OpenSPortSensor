@@ -6,9 +6,10 @@
 class SPortWriter {
     public:
         explicit SPortWriter(Stream *pStream);
-        void write(unsigned char byte);
+        void write(unsigned char buffer[], size_t len);
 
     private:
+        void write(unsigned char byte);
         Stream *pStream;
 };
 

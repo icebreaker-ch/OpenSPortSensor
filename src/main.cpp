@@ -75,7 +75,7 @@ static void addSensors() {
     // GPS: Position Sensor
     GPSPositionSensor *pLatitudeLongitudeSensor = new GPSPositionSensor(pNeoGPSSensor);
     hub.addSensor(pLatitudeLongitudeSensor);
-    
+
     // GPS: Altitude Sensor
     GPSAltitudeSensor *pGPSAltitudeSensor = new GPSAltitudeSensor(pNeoGPSSensor);
     hub.addSensor(pGPSAltitudeSensor);
@@ -92,12 +92,12 @@ static void addSensors() {
 void setup() {
 #ifdef LOGGING_ON
     Serial.begin(9600); // For debugging output
-#endif    
+#endif
 
     pinMode(LED_PIN, OUTPUT);
     analogReference(ANALOG_REFERENCE);
     addSensors();
-    
+
     pStream->begin(S_PORT_BAUD, SERIAL_8N1);
     pStream->listen();
 
@@ -139,14 +139,10 @@ void loop() {
 
         pStream->stopListening();
         Sensor *pSensor = hub.getNextSensor();
-        TxData data(pSensor->getSensorId(), pSensor->getValue());
-
         unsigned char bytes[TxData::LEN];
+        TxData data(pSensor->getSensorId(), pSensor->getValue());
         data.getData(bytes);
-
-        for (int i = 0; i < TxData::LEN; ++i) {
-            pSPortWriter->write(bytes[i]);
-        }
+        pSPortWriter->write(bytes, TxData::LEN);
 
         pStream->listen();
         state = stateWaitHeader;
