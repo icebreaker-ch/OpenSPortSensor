@@ -25,7 +25,7 @@
 #define START_BYTE 0x7E
 
 #ifdef USE_HARDWARE_SERIAL
-static ISPortStream *pStream = new SPortHardwareStream(&HARDWARE_SERIAL_STREAM);
+static ISPortStream *pStream = new SPortHardwareStream();
 #else
 static ISPortStream *pStream = new SPortSoftwareStream(SOFTWARE_SERIAL_PIN);
 #endif

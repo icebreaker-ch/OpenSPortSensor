@@ -1,42 +1,38 @@
 #include "SPortSoftwareStream.h"
-
-#ifndef USE_HARDWARE_SERIAL
 #include <SoftwareSerial.h>
 
 SPortSoftwareStream::SPortSoftwareStream(int pin) :
-    pin(pin) {
-    pStream = new SoftwareSerial(pin, pin, true);
+    pin(pin),
+    serial(pin, pin, true) {
 }
 
 void SPortSoftwareStream::begin(unsigned long speed, byte config) {
     pinMode(pin, INPUT); // Start with reading mode
-    pStream->begin(speed);
+    serial.begin(speed);
 }
 
 void SPortSoftwareStream::listen() {
     pinMode(pin, INPUT);
-    pStream->listen();
+    serial.listen();
 }
 
 void SPortSoftwareStream::stopListening() {
     pinMode(pin, OUTPUT);
-    pStream->stopListening();
+    serial.stopListening();
 }
 
 int SPortSoftwareStream::available() {
-    return pStream->available();
+    return serial.available();
 }
 
 int SPortSoftwareStream::read() {
-    return pStream->read();
+    return serial.read();
 }
 
 size_t SPortSoftwareStream::write(uint8_t c) {
-    return pStream->write(c);
+    return serial.write(c);
 }
 
 int SPortSoftwareStream::peek() {
-    return pStream->peek();
+    return serial.peek();
 }
-
-#endif
