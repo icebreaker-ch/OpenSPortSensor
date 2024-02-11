@@ -1,13 +1,11 @@
 #include "SPortHardwareStream.h"
 
-#ifdef USE_HARDWARE_SERIAL
-
-SPortHardwareStream::SPortHardwareStream(HardwareSerial *pStream) :
-    pStream(pStream) {
+SPortHardwareStream::SPortHardwareStream() :
+    serial(HARDWARE_SERIAL_STREAM) {
 }
 
 void SPortHardwareStream::begin(unsigned long speed, byte config) {
-    pStream->begin(speed, config);
+    serial.begin(speed, config);
 }
 
 void SPortHardwareStream::listen() {
@@ -19,19 +17,17 @@ void SPortHardwareStream::stopListening() {
 }
 
 int SPortHardwareStream::available() {
-    return pStream->available();
+    return serial.available();
 }
 
 int SPortHardwareStream::read() {
-    return pStream->read();
+    return serial.read();
 }
 
 size_t SPortHardwareStream::write(uint8_t c) {
-    return pStream->write(c);
+    return serial.write(c);
 }
 
 int SPortHardwareStream::peek() {
-    return pStream->peek();
+    return serial.peek();
 }
-
-#endif
