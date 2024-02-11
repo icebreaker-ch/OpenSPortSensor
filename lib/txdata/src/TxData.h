@@ -9,7 +9,7 @@ class TxData {
         void getData(unsigned char buffer[]);
 
         static const int LEN = 8;
-        static unsigned char NO_DATA[LEN];
+        static unsigned char const NO_DATA[LEN];
 
     private:
         unsigned char getChecksum(unsigned char data[]);

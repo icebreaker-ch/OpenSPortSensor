@@ -15,7 +15,7 @@ void SPortWriter::write(unsigned char byte) {
         pStream->write(byte);
 }
 
-void SPortWriter::write(unsigned char buffer[], size_t len) {
+void SPortWriter::write(unsigned char const buffer[], size_t len) {
     for (size_t i = 0; i < len; ++i) {
         write(buffer[i]);
     }
