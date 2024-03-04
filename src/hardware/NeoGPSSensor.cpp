@@ -2,12 +2,12 @@
 #include "NeoGPSSensor.h"
 
 NeoGPSSensor::NeoGPSSensor() {
-    Serial1.begin(9600, SERIAL_8N1);
+    HARDWARE_SERIAL_STREAM.begin(9600, SERIAL_8N1);
 }
 
 void NeoGPSSensor::poll() {
-    while (Serial1.available() > 0) {
-        char c = Serial1.read();
+    while (HARDWARE_SERIAL_STREAM.available() > 0) {
+        char c = HARDWARE_SERIAL_STREAM.read();
         gps.encode(c);
     }
 }
