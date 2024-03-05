@@ -8,7 +8,7 @@
  * on your board to handle the communication between the Arduino and the Receiver.
  * You need a RS232 Inverter Board between the Arduino and the Receiver.
  */
-// #define USE_HARDWARE_SERIAL
+//#define USE_HARDWARE_SERIAL
 
 #ifndef USE_HARDWARE_SERIAL
 /**

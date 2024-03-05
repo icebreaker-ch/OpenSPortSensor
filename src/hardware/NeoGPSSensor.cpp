@@ -1,6 +1,10 @@
 #include "config.h"
 #include "NeoGPSSensor.h"
 
+#ifdef USE_HARDWARE_SERIAL
+#error "Configuration problem: Hardware serial already used for receiver"
+#endif
+
 NeoGPSSensor::NeoGPSSensor() {
     HARDWARE_SERIAL_STREAM.begin(9600, SERIAL_8N1);
 }
