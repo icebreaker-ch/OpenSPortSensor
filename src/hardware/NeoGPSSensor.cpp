@@ -2,7 +2,7 @@
 #include "NeoGPSSensor.h"
 
 #ifdef USE_HARDWARE_SERIAL
-#error "Configuration problem: Hardware serial already used for receiver"
+#warning "Configuration problem: Hardware serial already used for receiver"
 #endif
 
 NeoGPSSensor::NeoGPSSensor() {
