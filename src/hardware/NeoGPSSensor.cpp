@@ -1,12 +1,12 @@
 #include "config.h"
 #include "NeoGPSSensor.h"
 
-#ifdef USE_HARDWARE_SERIAL
-#warning "Configuration problem: Hardware serial already used for receiver"
-#endif
+#ifndef USE_HARDWARE_SERIAL
 
 NeoGPSSensor::NeoGPSSensor() {
+    #ifndef USE_HARDWARE_SERIAAL
     HARDWARE_SERIAL_STREAM.begin(9600, SERIAL_8N1);
+    #endif
 }
 
 void NeoGPSSensor::poll() {
@@ -35,3 +35,5 @@ double NeoGPSSensor::getSpeed() {
 double NeoGPSSensor::getCourse() {
     return gps.course.isValid() && gps.course.age() < SENSOR_TIMEOUT ? gps.course.deg() : 0;
 }
+
+#endif

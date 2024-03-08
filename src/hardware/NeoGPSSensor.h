@@ -1,10 +1,13 @@
 #ifndef NEO_GPS_SENSOR_H
 #define NEO_GPS_SENSOR_H
 
+#include "config.h"
 #include <Arduino.h>
 #include <TinyGPS++.h>
 #include "IGPSSensor.h"
 #include "IPollingDevice.h"
+
+#ifndef USE_HARDWARE_SERIAL
 
 class NeoGPSSensor : public IGPSSensor, public IPollingDevice {
     public:
@@ -20,4 +23,5 @@ class NeoGPSSensor : public IGPSSensor, public IPollingDevice {
         TinyGPSPlus gps;
 };
 
+#endif
 #endif

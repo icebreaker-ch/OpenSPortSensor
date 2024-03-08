@@ -11,11 +11,14 @@
 #include "BME280.h"
 #include "AltitudeSensor.h"
 #include "VerticalSpeedSensor.h"
+#ifdef GPS_SENSOR
 #include "NeoGPSSensor.h"
 #include "GPSCourseSensor.h"
 #include "GPSPositionSensor.h"
 #include "GPSAltitudeSensor.h"
 #include "GPSSpeedSensor.h"
+#endif
+#include "IPollingDevice.h"
 #include "NullFilter.h"
 #include "MeanValueFilter.h"
 #include "SPortHardwareStream.h"
@@ -35,26 +38,33 @@ static SensorHub hub(PHYSICAL_ID);
 static List<IPollingDevice *> pollingDevices;
 
 static void addSensors() {
+#ifdef TEST_SENSOR
     // Add required sensors here
     // Test Sensor
     // ===========
-    // SimpleSensor *pTestSensor = new SimpleSensor(0x5200);
-    // hub.addSensor(pTestSensor);
+    SimpleSensor *pTestSensor = new SimpleSensor(0x5200);
+    hub.addSensor(pTestSensor);
+#endif
 
+#ifdef VOLTAGE_SENSOR
     // Voltage Sensor
     // ==============
     VoltageSensor *pVoltageSensor = new VoltageSensor(A0, 15000, 3300);
     pVoltageSensor->setFilter(new MeanValueFilter());
     pVoltageSensor->setReportInterval(STANDARD_INTERVAL);
     hub.addSensor(pVoltageSensor);
+#endif
 
+#ifdef CURRENT_SENSOR
     // Current Sensor
     // ==============
     CurrentSensor *pCurrentSensor = new CurrentSensor(A2, 1280.0, 25.0);
     pCurrentSensor->setFilter(new MeanValueFilter());
     pCurrentSensor->setReportInterval(STANDARD_INTERVAL);
     hub.addSensor(pCurrentSensor);
+#endif
 
+#ifdef VARIO_SENSOR
     // Vario
     // =====
     // Vario: Altitude
@@ -68,7 +78,9 @@ static void addSensors() {
     pVerticalSpeedSensor->setFilter(new MeanValueFilter());
     pVerticalSpeedSensor->setReportInterval(STANDARD_INTERVAL);
     hub.addSensor(pVerticalSpeedSensor);
+#endif
 
+ #ifdef GPS_SENSOR
     // GPS
     NeoGPSSensor *pNeoGPSSensor = new NeoGPSSensor();
     pollingDevices.add(pNeoGPSSensor); // register as polling device for feeding GPS data
@@ -87,6 +99,7 @@ static void addSensors() {
     // GPS: Course Sensor
     GPSCourseSensor *pGPSCourseSensor = new GPSCourseSensor(pNeoGPSSensor);
     hub.addSensor(pGPSCourseSensor);
+#endif
 }
 
 void setup() {

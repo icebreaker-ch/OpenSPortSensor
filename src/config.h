@@ -4,6 +4,31 @@
 #include "global.h"
 
 /**
+ * Define this, if you want to embed the Test Sensor
+*/
+//#define TEST_SENSOR
+
+/**
+ * Define this, if you want to embed a Voltage Sensor
+*/
+#define VOLTAGE_SENSOR
+
+/**
+ * Define this, if you want to embed a Current Sensor
+*/
+#define CURRENT_SENSOR
+
+/**
+ * Define this, if you want to embed a GPS Sensor
+*/
+#define GPS_SENSOR
+
+/**
+ * Define this, if you want to embed a Vario Sensor
+*/
+#define VARIO_SENSOR
+
+/**
  * Uncomment this, if you want to use the Hardware Serial interface (RX/TX Pins)
  * on your board to handle the communication between the Arduino and the Receiver.
  * You need a RS232 Inverter Board between the Arduino and the Receiver.
