@@ -20,7 +20,7 @@ class SPortHardwareStream : public ISPortStream {
         virtual int peek() override;
 
     private:
-        HardwareSerial serial;
+        HardwareSerial &serial;
 };
 
 #endif
