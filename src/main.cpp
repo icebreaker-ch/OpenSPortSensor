@@ -5,7 +5,7 @@
 #include "config.h"
 #include "SensorHub.h"
 #include "Sensor.h"
-#include "SimpleSensor.h"
+#include "TestSensor.h"
 #include "VoltageSensor.h"
 #include "CurrentSensor.h"
 #include "BME280.h"
@@ -42,7 +42,7 @@ static void addSensors() {
     // Add required sensors here
     // Test Sensor
     // ===========
-    SimpleSensor *pTestSensor = new SimpleSensor(0x5200);
+    TestSensor *pTestSensor = new TestSensor(0x5200);
     hub.addSensor(pTestSensor);
 #endif
 
