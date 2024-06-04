@@ -24,7 +24,7 @@ class CurrentSensor : public Sensor {
         uint8_t analogPin;
         double millivoltsForZeroAmps;
         double millivoltsPerAmp;
-        double lastReportCurrent;
+        double current;
         Filter *pFilter;
         Timer timer;
         unsigned long reportInterval;

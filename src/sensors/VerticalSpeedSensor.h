@@ -22,7 +22,7 @@ class VerticalSpeedSensor : public Sensor {
         Timer timer;
         unsigned long reportInterval;
         float lastReportAltitude;
-        float lastReportVerticalSpeed;
+        float verticalSpeed;
 };
 
 #endif

@@ -21,7 +21,7 @@ class AltiudeSensor : public Sensor {
         Filter *pFilter;
         Timer timer;
         unsigned long reportInterval;
-        long lastReportValue;
+        long altitude;
 };
 
 #endif

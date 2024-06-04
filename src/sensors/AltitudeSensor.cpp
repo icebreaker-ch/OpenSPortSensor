@@ -6,7 +6,7 @@ AltiudeSensor::AltiudeSensor(IAltitudeSensor *pAltitudeSensor, unsigned int sens
     pAltitudeSensor(pAltitudeSensor),
     pFilter(nullptr),
     reportInterval(0),
-    lastReportValue(0L) {
+    altitude(0L) {
 }
 
 void AltiudeSensor::setReportInterval(unsigned long reportInterval) {
@@ -18,20 +18,15 @@ void AltiudeSensor::setFilter(Filter *pFilter) {
 }
 
 long AltiudeSensor::getValue() {
-    float altitude = pAltitudeSensor->readAltitude();
-    pFilter->addValue(altitude);
+    float readAltitude = pAltitudeSensor->readAltitude();
+    pFilter->addValue(readAltitude);
 
-    long result;
     if (timer.getElapsedTime() >= reportInterval) {
-        float reportAltitude = pFilter->getFilteredValue();
+        altitude = pFilter->getFilteredValue();
         pFilter->reset();
-        result = ((long)(round(PRECISION * reportAltitude)));        
-        lastReportValue = result;
-        LOG("new altitude: ", reportAltitude, " result: ", result, "\n");
         timer.reset();
-    } else {
-        result = lastReportValue;
+        LOG("new altitude: ", altitude, "\n");
     }
 
-    return result;
+    return ((long)(round(PRECISION * altitude)));
 }

@@ -39,7 +39,7 @@ class VoltageSensor : public Sensor {
         uint8_t analogPin;
         long resistorToVoltage;
         long resistorToGround;
-        double lastReportVoltage;
+        double voltage;
         Filter *pFilter;
         Timer timer;
         unsigned long reportInterval;

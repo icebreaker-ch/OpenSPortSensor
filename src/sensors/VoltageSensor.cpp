@@ -7,7 +7,7 @@ VoltageSensor::VoltageSensor(uint8_t analogPin, long resistorToVoltage, long res
     analogPin(analogPin),
     resistorToVoltage(resistorToVoltage),
     resistorToGround(resistorToGround),
-    lastReportVoltage(0.0),
+    voltage(0.0),
     pFilter(nullptr),
     reportInterval(0) {
 }
@@ -27,16 +27,12 @@ long VoltageSensor::getValue() {
     double inputVoltage = pinVoltage * (resistorToGround + resistorToVoltage) / resistorToGround;
     pFilter->addValue(inputVoltage);
 
-    double reportVoltage;
     if (timer.getElapsedTime() >= reportInterval) {
-        reportVoltage = pFilter ? pFilter->getFilteredValue() : inputVoltage;
+        voltage = pFilter->getFilteredValue();
         pFilter->reset();
-        lastReportVoltage = reportVoltage;
-        LOG("report new Voltage: ", reportVoltage, "\n");
         timer.reset();
-    } else {
-        reportVoltage = lastReportVoltage;
+        LOG("report new Voltage: ", voltage, "\n");
     }
 
-    return (long)(reportVoltage * PRECISION);
+    return (long)(voltage * PRECISION);
 }

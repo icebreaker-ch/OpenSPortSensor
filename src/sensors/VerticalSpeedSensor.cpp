@@ -9,7 +9,7 @@ VerticalSpeedSensor::VerticalSpeedSensor(IAltitudeSensor *pAltitudeSensor, unsig
     pFilter(nullptr),
     reportInterval(0),
     lastReportAltitude(0.0F),
-    lastReportVerticalSpeed(0.0F) {
+    verticalSpeed(0.0F) {
 }
 
 void VerticalSpeedSensor::setReportInterval(unsigned long reportInterval) {
@@ -24,20 +24,16 @@ long VerticalSpeedSensor::getValue() {
     float altitudeRead = pAltitudeSensor->readAltitude();
     pFilter->addValue(altitudeRead);
 
-    float currentVerticalSpeed;
     unsigned long elapsedTime = timer.getElapsedTime();
     if (elapsedTime >= reportInterval) {
         float currentAltitude = pFilter->getFilteredValue();
         float diffAltitude = currentAltitude - lastReportAltitude;
-        currentVerticalSpeed = diffAltitude * MILLISECONDS_PER_SECOND / elapsedTime;
-        LOG("old: ", lastReportAltitude, " current: ", currentAltitude, " diff: ", diffAltitude, " vSpeed: ", currentVerticalSpeed, "\n");
-        lastReportAltitude = currentAltitude;
-        lastReportVerticalSpeed = currentVerticalSpeed;
+        verticalSpeed = diffAltitude * MILLISECONDS_PER_SECOND / elapsedTime;
         pFilter->reset();
         timer.reset();
-    } else {
-        currentVerticalSpeed = lastReportVerticalSpeed;
-    }
 
-    return (long)(round(PRECISION * currentVerticalSpeed));
+        LOG("old: ", lastReportAltitude, " current: ", currentAltitude, " diff: ", diffAltitude, " vSpeed: ", verticalSpeed, "\n");
+        lastReportAltitude = currentAltitude;
+    }
+    return (long)(round(PRECISION * verticalSpeed));
 }

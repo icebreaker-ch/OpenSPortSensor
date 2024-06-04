@@ -7,7 +7,7 @@ CurrentSensor::CurrentSensor(uint8_t analogPin, double millivoltsForZeroAmps, do
     analogPin(analogPin),
     millivoltsForZeroAmps(millivoltsForZeroAmps),
     millivoltsPerAmp(millivoltsPerAmp),
-    lastReportCurrent(0.0),
+    current(0.0),
     pFilter(nullptr),
     reportInterval(0) {
 }
@@ -23,20 +23,15 @@ void CurrentSensor::setReportInterval(unsigned long reportInterval) {
 long CurrentSensor::getValue() {
     long analogReadValue = analogRead(analogPin);
     long pinMilliVolts = analogReadValue * ANALOG_REFERENCE_VOLTAGE / 1024;
-    double current = (pinMilliVolts - millivoltsForZeroAmps) / millivoltsPerAmp;
+    double readCurrent = (pinMilliVolts - millivoltsForZeroAmps) / millivoltsPerAmp;
 
-    pFilter->addValue(current);
+    pFilter->addValue(readCurrent);
 
-    double reportCurrent;
     if (timer.getElapsedTime() >= reportInterval) {
-        reportCurrent = pFilter ? pFilter->getFilteredValue() : current;
+        current = pFilter->getFilteredValue();
         pFilter->reset();
-        lastReportCurrent = reportCurrent;
-        LOG("report new Current: ", reportCurrent, "\n");
         timer.reset();
-    } else {
-        reportCurrent = lastReportCurrent;
+        LOG("report new Current: ", reportCurrent, "\n");
     }
-
-    return (long)(reportCurrent * PRECISION);
+    return (long)(current * PRECISION);
 }
