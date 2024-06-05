@@ -29,7 +29,7 @@ The Documentation for this project can be found in the [wiki](https://github.com
       <td align="center">
         <figure>
           <img src="images/OpenSPortMulligan.jpg" width="350" title="OpenSPort Sensor with current and voltage sensors in a Great Planes Mister Mulligan"><br/>
-          <figcaption>OpenSPort Sensor with current and voltage sensors in a Great Planes Mister Mulligan</figcaption>
+          <figcaption>OpenSPort Sensor with current and voltage sensors in a <i>Great Planes</i> <i>Mister Mulligan<i></figcaption>
         </figure>
       </td>
     \/tr>
