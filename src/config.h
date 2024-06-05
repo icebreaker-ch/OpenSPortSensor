@@ -68,17 +68,20 @@
 /**
  * Define, what to use as the analog reference voltage.
  * can be one of:
- * DEFAULT: the default analog reference of 5 volts (on 5V Arduino boards) or 3.3 volts (on 3.3V Arduino boards)
- * INTERNAL: a built-in reference, equal to 1.1 volts on the ATmega168 or ATmega328P and 2.56 volts on the ATmega32U4 and ATmega8 (not available on the Arduino Mega)
- * INTERNAL1V1: a built-in 1.1V reference (Arduino Mega only)
- * INTERNAL2V56: a built-in 2.56V reference (Arduino Mega only)
- * EXTERNAL: the voltage applied to the AREF pin (0 to 5V only) is used as the reference.
+ * - DEFAULT: the default analog reference of 5 volts (on 5V Arduino boards) or 3.3 volts (on 3.3V Arduino boards)
+ * - INTERNAL: a built-in reference, equal to 1.1 volts on the ATmega168 or ATmega328P and 2.56 volts on the ATmega32U4 and ATmega8 (not available on the Arduino Mega)
+ * - INTERNAL1V1: a built-in 1.1V reference (Arduino Mega only)
+ * - INTERNAL2V56: a built-in 2.56V reference (Arduino Mega only)
+ * - EXTERNAL: the voltage applied to the AREF pin (0 to 5V only) is used as the reference.
  */
 #define ANALOG_REFERENCE INTERNAL
 
 /**
  * Defines the reference voltage in [mV]
- * Use INTERNAL_REFERENCE_VOLTAGE or the actual value of the refernce value at AREF.
+ * Use:
+ * - INTERNAL_REFERENCE_VOLTAGE if you want to use the internal reference voltage of e.g. 1.1, or 2.56 V, depending of the board
+ * - The specific voltage, applied to AREF pin if you want to use an EXTERNAL analog reference voltage
+ * - The specific voltage of VCC if you want to use the DEFAULT analog reference.
  */
 #define ANALOG_REFERENCE_VOLTAGE INTERNAL_REFERENCE_VOLTAGE
 
