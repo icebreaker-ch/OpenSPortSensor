@@ -25,6 +25,14 @@ The Documentation for this project can be found in the [wiki](https://github.com
         </figure>
         </td>
     </tr>
+    <tr>
+      <td align="center">
+        <figure>
+          <img src="images/OpenSPortMulligan.jpg" width="350" title="OpenSPort Sensor with current and voltage sensors in a Great Planes Mister Mulligan"><br/>
+          <figcaption>OpenSPort Sensor with current and voltage sensors in a Great Planes Mister Mulligan</figcaption>
+        </figure>
+      </td>
+    \/tr>
   </table>
 </p>
 
