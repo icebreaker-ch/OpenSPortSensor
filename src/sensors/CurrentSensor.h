@@ -13,7 +13,7 @@
  */
 class CurrentSensor : public Sensor {
     public:
-        CurrentSensor(uint8_t analogPin, double millivoltsForZeroAmps, double millivoltsPerAmp, unsigned int sensorId = CURR_FIRST_ID);
+        CurrentSensor(uint8_t analogPin, int millivoltsForZeroAmps, int millivoltsPerAmp, unsigned int sensorId = CURR_FIRST_ID);
         void setReportInterval(unsigned long reportInterval);
         void setFilter(Filter *pFilter);
         long getValue() override;
@@ -22,8 +22,8 @@ class CurrentSensor : public Sensor {
         static const unsigned int PRECISION = 10; // 1 digit
 
         uint8_t analogPin;
-        double millivoltsForZeroAmps;
-        double millivoltsPerAmp;
+        int millivoltsForZeroAmps;
+        int millivoltsPerAmp;
         double current;
         Filter *pFilter;
         Timer timer;

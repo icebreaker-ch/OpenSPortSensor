@@ -1,17 +1,17 @@
 #include "NullFilter.h"
 
 NullFilter::NullFilter() :
-    value(0.0F) {
+    value(0.0) {
 }
 
 void NullFilter::reset() {
-    value = 0.0F;
+    value = 0.0;
 }
 
-void NullFilter::addValue(float newValue) {
+void NullFilter::addValue(double newValue) {
     value = newValue;
 }
 
-float NullFilter::getFilteredValue() {
+double NullFilter::getFilteredValue() {
     return value;
 }

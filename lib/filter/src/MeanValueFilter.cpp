@@ -2,19 +2,19 @@
 
 MeanValueFilter::MeanValueFilter() :
     numValues(0),
-    sum(0.0F) {
+    sum(0.0) {
 }
 
 void MeanValueFilter::reset() {
     numValues = 0;
-    sum = 0.0F;
+    sum = 0.0;
 }
 
-void MeanValueFilter::addValue(float newValue) {
+void MeanValueFilter::addValue(double newValue) {
     sum += newValue;
     ++numValues;
 }
 
-float MeanValueFilter::getFilteredValue() {
-    return numValues > 0 ? sum / numValues : 0.0F;
+double MeanValueFilter::getFilteredValue() {
+    return numValues > 0 ? sum / numValues : 0.0;
 }

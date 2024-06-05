@@ -6,11 +6,11 @@ class MeanValueFilter : public Filter {
     public:
         MeanValueFilter();
         void reset() override;
-        void addValue(float newValue) override;
-        float getFilteredValue() override;
+        void addValue(double newValue) override;
+        double getFilteredValue() override;
 
     private:
         unsigned int numValues;
-        float sum;
+        double sum;
 };
 #endif

@@ -2,7 +2,7 @@
 #include <log.h>
 #include "CurrentSensor.h"
 
-CurrentSensor::CurrentSensor(uint8_t analogPin, double millivoltsForZeroAmps, double millivoltsPerAmp, unsigned int sensorId) :
+CurrentSensor::CurrentSensor(uint8_t analogPin, int millivoltsForZeroAmps, int millivoltsPerAmp, unsigned int sensorId) :
     Sensor(sensorId),
     analogPin(analogPin),
     millivoltsForZeroAmps(millivoltsForZeroAmps),
@@ -22,7 +22,7 @@ void CurrentSensor::setReportInterval(unsigned long reportInterval) {
 
 long CurrentSensor::getValue() {
     long analogReadValue = analogRead(analogPin);
-    long pinMilliVolts = analogReadValue * ANALOG_REFERENCE_VOLTAGE / 1024;
+    double pinMilliVolts = analogReadValue * ANALOG_REFERENCE_VOLTAGE / 1024.0;
     double readCurrent = (pinMilliVolts - millivoltsForZeroAmps) / millivoltsPerAmp;
 
     pFilter->addValue(readCurrent);

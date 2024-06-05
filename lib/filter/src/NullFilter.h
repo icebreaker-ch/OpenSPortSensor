@@ -6,10 +6,10 @@ class NullFilter : public Filter {
     public:
         NullFilter();
         void reset() override;
-        void addValue(float newValue) override;
-        float getFilteredValue() override;
+        void addValue(double newValue) override;
+        double getFilteredValue() override;
 
     private:
-        float value;
+        double value;
 };
 #endif
